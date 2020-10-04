@@ -19,7 +19,8 @@ class MainFile extends Component {
             ],
             home: {
                 title: 'DataStructures and algorithms',
-                subTitle: 'Play around',
+                subTitle: 'Visualizers and Animations',
+                text: 'By AdditcoX'
             },
             about: {
                 title: 'About us'
@@ -45,12 +46,12 @@ class MainFile extends Component {
                             </Nav>
                         </Navbar.Collapse>
                     </Navbar>
-                </Container>
-                <Route path="/" exact render={() => <HomePage title={this.state.home.title} subTitle={this.state.home.subTitle}/>} />
-                <Route path="/about" exact render={() => <AboutPage title={this.state.about.title} />} />
-                <Route path="/contact" exact render={() => <ContactPage title={this.state.contact.title} />} />
+                    </Container>
+                    <Route path="/" exact render={() => <HomePage title={this.state.home.title} subTitle={this.state.home.subTitle} text={this.state.home.text} />} />
+                    <Route path="/about" exact render={() => <AboutPage title={this.state.about.title} />} />
+                    <Route path="/contact" exact render={() => <ContactPage title={this.state.contact.title} />} />
+                    <FooterPage />
             </Router>
-            <FooterPage />
 			</React.Fragment>
         );
     }

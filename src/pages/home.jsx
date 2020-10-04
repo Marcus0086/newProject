@@ -1,9 +1,11 @@
 import React from 'react';
+import Sorting from '../components/SortingVisualizer';
 import HeroPage from '../components/hero';
 function HomePage(props) {
     return (
         <React.Fragment>
-            <HeroPage title={props.title} subTitle={props.subTitle} />
+            <HeroPage title={props.title} subTitle={props.subTitle} text={props.text}/>
+            <Sorting />
         </React.Fragment>
     );
 }

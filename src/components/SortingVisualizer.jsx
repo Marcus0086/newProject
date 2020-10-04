@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import "./SortingVisualizer.css";
-
 class Sorting extends Component {
     constructor(props) {
         super(props);
@@ -17,7 +16,7 @@ class Sorting extends Component {
     resetArray() {
         const array = [];
         for (let i = 0; i < 100; i++) {
-            array.push(randomIntFromFunction(10, 500));
+            array.push(randomIntFromFunction(50, 400));
         }
         this.setState({ array });
     }
@@ -27,7 +26,6 @@ class Sorting extends Component {
 
         return (
             <React.Fragment>
-            <button onClick={() => this.resetArray()}>Generate</button><br />
             <div className="array-container">
             {array.map((value, idx) => (
                 <div
@@ -38,7 +36,9 @@ class Sorting extends Component {
                  }}
                 />
                 ))}
-            </div>
+                </div>
+                {/*<button onClick={() => this.resetArray()}>Generate</button><br />*/}
+                <br />
             </React.Fragment>
         );
     }
