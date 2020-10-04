@@ -3,7 +3,7 @@ import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
 import { Navbar, Nav, Container } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.css';
 import './mainFile.css';
-//import Footer from './components/footer';
+import Footer from './components/footer';
 import Sorting from './components/SortingVisualizer';
 import AboutPage from './pages/about';
 import ContactPage from './pages/contact';
@@ -49,6 +49,7 @@ class MainFile extends Component {
                 <Route path="/" exact render={() => <Sorting />} />
                 <Route path="/about" exact render={() => <AboutPage title={this.state.about.title} />} />
                 <Route path="/contact" exact render={() => <ContactPage title={this.state.contact.title} />} />
+                <Footer />
             </Router>
 			</React.Fragment>
         );
