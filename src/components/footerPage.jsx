@@ -3,7 +3,7 @@ import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 
-class Footer extends Component {
+class FooterPage extends Component {
     render() {
         return (
             <React.Fragment>
@@ -30,4 +30,4 @@ class Footer extends Component {
     }
 }
 
-export default Footer;
+export default FooterPage;

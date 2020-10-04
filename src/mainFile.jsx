@@ -2,11 +2,11 @@ import React, { Component } from 'react';
 import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
 import { Navbar, Nav, Container } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.css';
-import './mainFile.css';
-import Footer from './components/footer';
-import Sorting from './components/SortingVisualizer';
+import FooterPage from './components/footerPage';
+import HomePage from './pages/home';
 import AboutPage from './pages/about';
 import ContactPage from './pages/contact';
+import './mainFile.css';
 class MainFile extends Component {
     constructor(props) {
         super(props);
@@ -46,11 +46,11 @@ class MainFile extends Component {
                         </Navbar.Collapse>
                     </Navbar>
                 </Container>
-                <Route path="/" exact render={() => <Sorting />} />
+                <Route path="/" exact render={() => <HomePage title={this.state.home.title} subTitle={this.state.home.subTitle}/>} />
                 <Route path="/about" exact render={() => <AboutPage title={this.state.about.title} />} />
                 <Route path="/contact" exact render={() => <ContactPage title={this.state.contact.title} />} />
-                <Footer />
             </Router>
+            <FooterPage />
 			</React.Fragment>
         );
     }
