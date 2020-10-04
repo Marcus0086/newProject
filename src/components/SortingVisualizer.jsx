@@ -13,6 +13,7 @@ class Sorting extends Component {
     componentDidMount() {
         this.resetArray();
     }
+
     resetArray() {
         const array = [];
         for (let i = 0; i < 100; i++) {
