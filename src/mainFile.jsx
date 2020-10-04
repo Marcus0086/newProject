@@ -2,13 +2,12 @@ import React, { Component } from 'react';
 import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
 import { Navbar, Nav, Container } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.css';
-import './main.css';
-import Footer from './components/footer';
+import './mainFile.css';
+//import Footer from './components/footer';
 import Sorting from './components/SortingVisualizer';
-import HomePage from './pages/home';
 import AboutPage from './pages/about';
 import ContactPage from './pages/contact';
-class Main extends Component {
+class MainFile extends Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -56,4 +55,4 @@ class Main extends Component {
     }
 }
 
-export default Main;
+export default MainFile;
