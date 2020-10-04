@@ -8,7 +8,7 @@ import Sorting from './components/SortingVisualizer';
 import HomePage from './pages/home';
 import AboutPage from './pages/about';
 import ContactPage from './pages/contact';
-class Main extends Component {
+class MainFile extends Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -56,4 +56,4 @@ class Main extends Component {
     }
 }
 
-export default Main;
+export default MainFile;
