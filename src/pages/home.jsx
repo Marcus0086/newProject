@@ -1,6 +1,5 @@
 import React from 'react';
 import HeroPage from '../components/hero';
-import Sorting from '../components/SortingVisualizer';
 function HomePage(props) {
     return (
         <React.Fragment>
