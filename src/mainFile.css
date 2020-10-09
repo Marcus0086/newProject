@@ -3,3 +3,27 @@
     display: normal;
     flex-direction: column;
 }
+.boxMain {
+    display:inline-block;
+    width:auto;
+    border:2px solid silver;
+    padding:20px;
+    margin-top:20px;
+    margin-bottom:50px;
+    margin-left:40px;
+}
+
+.box {
+    width:auto;
+    border:2px solid silver;
+    padding:50px;
+    margin:20px;  
+}
+
+.box2 {
+    width:550px;
+    border:2px solid silver;
+    padding:50px;
+    margin:20px;
+    margin-right:50px;
+}
