@@ -1,10 +1,27 @@
 .array-container {
+    background-color:white;
     position: relative;
+    margin:20px;
+    border:1px solid silver;
+    padding:20px;
+    border-radius:4px;
 }
 
+.array-container:hover {
+    background-color: rgb(216, 229, 237);
+}
+.array-container:active {
+    background-color: gray;
+    box-shadow: 0 5px #666;
+    transform: translateY(4px);
+
+}
+
+
 .array-bar {
-    width: 2px;
+    width: 4px;
     background-color: #14CADB;
     display: inline-block;
     margin: 0 1px;
+    
 }

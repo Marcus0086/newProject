@@ -5,9 +5,9 @@ import { getMergeSortAnimations } from '../Algorithms/newmergesort';
 import binaySearch from '../Algorithms/binarysearch';
 //import { Form } from "react-bootstrap";
 
-const ANIMATION_SPEED_MS = 5;
+const ANIMATION_SPEED_MS = 10;
 const PRIMARY_COLOR = '#14CADB';
-const SECONDARY_COLOR = 'red';
+const SECONDARY_COLOR = '#FF2200';
 class Sorting extends Component {
     constructor(props) {
         super(props);
@@ -34,12 +34,11 @@ class Sorting extends Component {
 
     resetArray() {
         const array = [];
-        for (let i = 0; i < 300; i++) {
+        for (let i = 0; i < 100; i++) {
             array.push(randomIntFromFunction(50, 400));
         }
         this.setState({ array: array });
-
-        window.addEventListener('load', this.mergeSort());
+        //console.log(this.state.array);
     }
     /*mergesortAlgo() {
         var array = [];
@@ -52,6 +51,10 @@ class Sorting extends Component {
     }*/
 
     mergeSort() {
+        if (this.isSorted(this.state.array)) {
+            alert("Already Sorted");
+            return;
+        }
         const animations = getMergeSortAnimations(this.state.array);
         for (let i = 0; i < animations.length; i++) {
             const arrayBars = document.getElementsByClassName('array-bar');
@@ -73,6 +76,11 @@ class Sorting extends Component {
                 }, i * ANIMATION_SPEED_MS);
             }
         }
+        console.log(this.state.array);
+        console.log(this.isSorted(this.state.array));
+        if (this.isSorted(this.state.array)) {
+            setTimeout(function () { alert("Done Merge Sort"); }, 21000);
+        }
     }
     testAlgos() {
         for (let i = 0; i < 1000; i++) {
@@ -83,12 +91,19 @@ class Sorting extends Component {
             }
             const sortedArray = MergeSort(arr);
             const presort = arr.slice().sort((a, b) => a - b);
-            //console.log(sortedArray);
-            //console.log(presort);
-            (sortedArray.length === presort.length) ? console.log(true) : console.log(false);
+            //console.log("MergeSort:"+sortedArray);
+            //console.log("PreSort:"+presort);
+            (JSON.stringify(sortedArray) === JSON.stringify(presort)) ? console.log(true) : console.log(false);
             //console.log(sortedArray[5]);
             //console.log(presort[5]);
         }
+    }
+
+    isSorted(array) {
+        if (JSON.stringify(array) === JSON.stringify(array.slice().sort((a, b) => a - b))) {
+            return true;
+        }
+        return false;
     }
 
     binarysortAlgo() {
@@ -107,20 +122,29 @@ class Sorting extends Component {
         const { array } = this.state;
         return (
             <React.Fragment>
-                <div className="array-container">
-                {array.map((value, idx) => (
-                <div
-                className="array-bar"
-                key={idx}
-                style={{ 
-                    height:`${value}px`
-                 }}
-                />
-                ))}
+                {/*<button onClick={() => this.resetArray()}>Reset</button>*/}
+
+                <div className="boxMain">
+                    <h1>Visualizations</h1>
+                    <button onClick={() => {
+                        this.mergeSort();
+                    }} className="array-container">
+                        {array.map((value, idx) => (
+                            <div
+                                className="array-bar"
+                                key={idx}
+                                style={{
+                                    height: `${value}px`
+                                }}
+                            />
+                        ))}
+                    </button>
+
                 </div>
-                <button onClick={() => this.resetArray()}>Reset</button>
+                {/*<button onClick={() => this.resetArray()}>Reset</button>
                 <button onClick={() => this.mergeSort()}>MergeSort</button>
-                <button onClick={() => this.testAlgos()}>test</button>
+                <button onClick={() => this.pause(1000)}>Pause</button>
+                <button onClick={() => this.testAlgos()}>test</button>*/}
             </React.Fragment>
         );
     }
