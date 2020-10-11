@@ -8,14 +8,9 @@
 }
 
 .array-container:hover {
-    background-color: rgb(216, 229, 237);
+    background-color: #E6EEF3;
 }
-.array-container:active {
-    background-color: gray;
-    box-shadow: 0 5px #666;
-    transform: translateY(4px);
 
-}
 
 
 .array-bar {
@@ -23,5 +18,5 @@
     background-color: #14CADB;
     display: inline-block;
     margin: 0 1px;
-    
+    margin-top: 20px;   
 }

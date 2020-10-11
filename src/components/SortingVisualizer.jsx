@@ -3,8 +3,9 @@ import "./SortingVisualizer.css";
 import MergeSort from '../Algorithms/mergesort';
 import { getMergeSortAnimations } from '../Algorithms/newmergesort';
 import binaySearch from '../Algorithms/binarysearch';
-//import { Form } from "react-bootstrap";
-
+import { Button } from "react-bootstrap";
+import { confirmAlert } from 'react-confirm-alert';
+import 'react-confirm-alert/src/react-confirm-alert.css'
 const ANIMATION_SPEED_MS = 10;
 const PRIMARY_COLOR = '#14CADB';
 const SECONDARY_COLOR = '#FF2200';
@@ -79,9 +80,28 @@ class Sorting extends Component {
         console.log(this.state.array);
         console.log(this.isSorted(this.state.array));
         if (this.isSorted(this.state.array)) {
-            setTimeout(function () { alert("Done Merge Sort"); }, 21000);
+            setTimeout(function () {
+                confirmAlert({
+                    title: 'Sorting Done',
+                    message: 'Want to reset array?',
+                    buttons: [
+                        {
+                            label: 'Yes',
+                            onClick: () => {
+                                this.resetArray();
+                            }
+                        },
+                        {
+                            label: 'No',
+                            onClick: () => {
+                                alert("You choosed no!")
+                            }
+                        }
+                    ]
+                }); }, 21000);
         }
     }
+
     testAlgos() {
         for (let i = 0; i < 1000; i++) {
             const arr = [],
@@ -125,10 +145,12 @@ class Sorting extends Component {
                 {/*<button onClick={() => this.resetArray()}>Reset</button>*/}
 
                 <div className="boxMain">
-                    <h1>Visualizations</h1>
-                    <button onClick={() => {
-                        this.mergeSort();
-                    }} className="array-container">
+                    
+                    <Button className="d-inline-block array-container" onClick={() => this.mergeSort()} variant="secondary">
+                        <h1 style={{
+                            //backgroundColor: "silver",
+                            color:"gray"
+                        }}>Visualizations</h1>
                         {array.map((value, idx) => (
                             <div
                                 className="array-bar"
@@ -138,8 +160,22 @@ class Sorting extends Component {
                                 }}
                             />
                         ))}
-                    </button>
-
+                    </Button>
+                    <Button className="d-inline-block array-container" onClick={() => this.mergeSort()} variant="secondary">
+                        <h1 style={{
+                            //backgroundColor: "silver",
+                            color: "gray"
+                        }}>Visualizations</h1>
+                        {array.map((value, idx) => (
+                            <div
+                                className="array-bar"
+                                key={idx}
+                                style={{
+                                    height: `${value}px`
+                                }}
+                            />
+                        ))}
+                    </Button>
                 </div>
                 {/*<button onClick={() => this.resetArray()}>Reset</button>
                 <button onClick={() => this.mergeSort()}>MergeSort</button>
