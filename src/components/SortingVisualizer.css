@@ -1,25 +1,35 @@
 .array-container {
     background-color:white;
     position: relative;
-    margin:20px;
+    margin:1%;
     border:1px solid silver;
-    padding:20px;
     border-radius:4px;
+    width:50%;
 }
 
 .array-container:hover {
-    background-color: #E6EEF3;
+    background-color: whitesmoke;
 }
 
-.array-container:active {
-    background-color:white;
+.array-container2 {
+    background-color: white;
+    position: relative;
+    margin: 1%;
+    border: 1px solid silver;
+    border-radius: 4px;
+    width: 40%;
 }
 
+.array-container2:hover {
+    background-color: whitesmoke;
+}
 
 .array-bar {
-    width: 4px;
+    width: 0.3%;
     background-color: #14CADB;
     display: inline-block;
-    margin: 0 1px;
-    margin-top: 20px;   
+    margin: 0 0.2%;
+    margin-top: 2%;
+    margin-bottom:2%;
+    
 }

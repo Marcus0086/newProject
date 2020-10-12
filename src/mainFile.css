@@ -5,27 +5,11 @@
 }
 .boxMain {
     display:inline-block;
-    width:auto;
+    width:80%;
     border:2px solid silver;
-    padding:20px;
+    padding:2%;
     margin-top:20px;
     margin-bottom:50px;
-    margin-left:10px;
+    margin-left:10%;
     border-radius:4px;
-}
-
-
-.box {
-    width:auto;
-    border:2px solid silver;
-    padding:50px;
-    margin:20px;  
-}
-
-.box2 {
-    width:550px;
-    border:2px solid silver;
-    padding:50px;
-    margin:20px;
-    margin-right:50px;
 }

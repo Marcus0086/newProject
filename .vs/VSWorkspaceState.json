@@ -4,7 +4,9 @@
     "\\src",
     "\\src\\Algorithms",
     "\\src\\components",
+    "\\src\\components\\images",
     "\\src\\pages"
   ],
+  "SelectedNode": "\\src\\components\\images",
   "PreviewInSolutionExplorer": false
 }

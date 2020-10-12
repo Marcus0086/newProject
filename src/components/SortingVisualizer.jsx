@@ -35,7 +35,7 @@ class Sorting extends Component {
 
     resetArray() {
         const array = [];
-        for (let i = 0; i < 100; i++) {
+        for (let i = 0; i < 140; i++) {
             array.push(randomIntFromFunction(50, 400));
         }
         this.setState({ array: array });
@@ -109,7 +109,8 @@ class Sorting extends Component {
                             label: 'No',
                         }
                     ]
-                }); }, 21000);
+                });
+            }, ANIMATION_SPEED_MS*3030);
         }
     }
 
@@ -159,8 +160,9 @@ class Sorting extends Component {
                     
                     <Button className="d-inline-block array-container" onClick={() => this.mergeSort()} variant="secondary">
                         <h1 style={{
-                            //backgroundColor: "silver",
-                            color:"gray"
+                            position: "relative",
+                            fontSize: '3vw',
+                            color:"gray",
                         }}>Visualizations</h1>
                         {array.map((value, idx) => (
                             <div
@@ -172,21 +174,14 @@ class Sorting extends Component {
                             />
                         ))}
                     </Button>
-                    <Button className="d-inline-block array-container" onClick={() => this.mergeSort()} variant="secondary">
+                    <textarea className="d-inline-block array-container2" variant="secondary">
                         <h1 style={{
-                            //backgroundColor: "silver",
-                            color: "gray"
-                        }}>Coding and Algorithms</h1>
-                        {array.map((value, idx) => (
-                            <div
-                                className="array-bar"
-                                key={idx}
-                                style={{
-                                    height: `${value}px`
-                                }}
-                            />
-                        ))}
-                    </Button>
+                            position: "relative",
+                            fontSize: '3vw',
+                            color: "gray",
+                        }}>Algorithms</h1>
+
+                    </textarea>
                 </div>
                 {/*<button onClick={() => this.resetArray()}>Reset</button>
                 <button onClick={() => this.mergeSort()}>MergeSort</button>
