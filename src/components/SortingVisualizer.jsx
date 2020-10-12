@@ -53,7 +53,21 @@ class Sorting extends Component {
 
     mergeSort() {
         if (this.isSorted(this.state.array)) {
-            alert("Already Sorted");
+            confirmAlert({
+                title: "Already Sorted!",
+                message: "Want to reset?",
+                buttons: [
+                    {
+                        label: 'Yes',
+                        onClick: () => {
+                            window.location.reload();
+                        }
+                    },
+                    {
+                        label:'No',
+                    }
+                ]
+            });
             return;
         }
         const animations = getMergeSortAnimations(this.state.array);
@@ -88,14 +102,11 @@ class Sorting extends Component {
                         {
                             label: 'Yes',
                             onClick: () => {
-                                this.resetArray();
+                                window.location.reload();
                             }
                         },
                         {
                             label: 'No',
-                            onClick: () => {
-                                alert("You choosed no!")
-                            }
                         }
                     ]
                 }); }, 21000);
@@ -165,7 +176,7 @@ class Sorting extends Component {
                         <h1 style={{
                             //backgroundColor: "silver",
                             color: "gray"
-                        }}>Visualizations</h1>
+                        }}>Coding and Algorithms</h1>
                         {array.map((value, idx) => (
                             <div
                                 className="array-bar"

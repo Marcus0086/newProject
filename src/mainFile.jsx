@@ -7,6 +7,7 @@ import HomePage from './pages/home';
 import AboutPage from './pages/about';
 import ContactPage from './pages/contact';
 import './mainFile.css';
+import logo from './components/images/Full-Logo.png';
 class MainFile extends Component {
     constructor(props) {
         super(props);
@@ -35,8 +36,8 @@ class MainFile extends Component {
             <React.Fragment>
             <Router>
                 <Container className="p-0" fluid={true}>
-                    <Navbar className="border-bottom" bg="dark" variant="dark" expand="lg">
-                        <Link className="nav-link" to="/about"><img alt={this.state.title} /></Link>
+                        <Navbar className="border-bottom" bg="dark" variant="dark" expand="lg">
+                            <Link className="nav-link" to="/about"><img alt={this.state.title} src={ logo } style={{ width:`${30}%` }} /></Link>
                         <Navbar.Toggle className="border-0" aria-controls="navbar-toggle" />
                         <Navbar.Collapse id="navbar-toggle">
                             <Nav className="ml-auto">

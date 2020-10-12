@@ -11,6 +11,9 @@
     background-color: #E6EEF3;
 }
 
+.array-container:active {
+    background-color:white;
+}
 
 
 .array-bar {
