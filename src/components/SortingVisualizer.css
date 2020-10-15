@@ -14,14 +14,14 @@
 .array-container2 {
     background-color: white;
     position: relative;
-    margin: 1%;
+    margin: 2%;
     border: 1px solid silver;
     border-radius: 4px;
     width: 40%;
 }
 
 .array-container2:hover {
-    background-color: whitesmoke;
+    background-color: ghostwhite;
 }
 
 .array-bar {

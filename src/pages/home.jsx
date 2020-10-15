@@ -4,7 +4,7 @@ import HeroPage from '../components/hero';
 function HomePage(props) {
     return (
         <React.Fragment>
-            <HeroPage title={props.title} subTitle={props.subTitle} text={props.text} />
+            <HeroPage className="back" title={props.title} subTitle={props.subTitle} text={props.text} />
             <Sorting />
         </React.Fragment>
     );

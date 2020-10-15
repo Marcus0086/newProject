@@ -1,4 +1,4 @@
-function merge(left, right) {
+    function merge(left, right) {
     let resultArray = [],
         leftIndex = 0,
         rightIndex = 0;
