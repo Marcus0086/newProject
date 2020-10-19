@@ -36,9 +36,13 @@ class MainFile extends Component {
         return (
             <React.Fragment>
             <Router>
-                <Container className="p-0" fluid={true}>
+                    <Container className="p-0" fluid={true}>
+                        
                         <Navbar className="border-bottom" bg="dark" variant="dark" expand="lg">
-                            <Link className="nav-link" to="/about"><img alt={this.state.title} src={ logo } style={{ width:`${20}%` }} /></Link>
+
+                            <Link className="nav-link" to="/about"><img alt={this.state.title} src={logo} style={{
+                                width: `${18}%`,
+                            }} /></Link>
                         <Navbar.Toggle className="border-0" aria-controls="navbar-toggle" />
                         <Navbar.Collapse id="navbar-toggle">
                             <Nav className="ml-auto">

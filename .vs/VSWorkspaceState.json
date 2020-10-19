@@ -3,10 +3,9 @@
     "",
     "\\src",
     "\\src\\Algorithms",
-    "\\src\\Algorithmstxt",
     "\\src\\components",
     "\\src\\pages"
   ],
-  "SelectedNode": "\\src\\Algorithmstxt\\mergesort.txt",
+  "SelectedNode": "\\src\\Algorithms\\bubbleSort.jsx",
   "PreviewInSolutionExplorer": false
 }

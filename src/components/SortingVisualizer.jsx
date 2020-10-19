@@ -1,6 +1,8 @@
 import React, { Component } from "react";
 import "./SortingVisualizer.css";
 import { getMergeSortAnimations } from '../Algorithms/newmergesort';
+import { getBubbleSortAnimations } from '../Algorithms/bubbleSort';
+import { getInsertionSortAnimations } from '../Algorithms/insertionSort';
 import { Button } from "react-bootstrap";
 import { confirmAlert } from 'react-confirm-alert';
 import 'react-confirm-alert/src/react-confirm-alert.css'
@@ -8,9 +10,10 @@ import CKEditor from '@ckeditor/ckeditor5-react';
 import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 import '../Algorithmstxt/mergesort.txt';
 
-let ANIMATION_SPEED_MS = 20;
+let ANIMATION_SPEED_MS = 10;
 const PRIMARY_COLOR = '#14CADB';
 const SECONDARY_COLOR = '#FF2200';
+
 class Sorting extends Component {
     constructor(props) {
         super(props);
@@ -42,17 +45,167 @@ class Sorting extends Component {
             array.push(randomIntFromFunction(50, 400));
         }
         this.setState({ array: array });
-        //console.log(this.state.array);
     }
-    /*mergesortAlgo() {
-        var array = [];
-        const preSort = this.state.array.slice().sort((a, b) => a - b);
-        array = MergeSort(this.state.array);
-        console.log("Merge Sort" + array);
-        console.log("Pre Sort" + preSort);
-        this.setState({ array });
-        (array.length === preSort.length) ? console.log(true) : console.log(false);
-    }*/
+
+    bubbleSort() {
+        if (this.isSorted(this.state.array)) {
+            confirmAlert({
+                title: "Already Sorted!",
+                message: "Want to reset?",
+                buttons: [
+                    {
+                        label: 'Yes',
+                        onClick: () => {
+                            window.location.reload();
+                        }
+                    },
+                    {
+                        label: 'No',
+                    }
+                ]
+            });
+            return;
+        }
+        const animations = getBubbleSortAnimations(this.state.array);
+        let anim = 0;
+        for (let i = 0; i < animations.length; ++i) {
+            anim = i * ANIMATION_SPEED_MS;
+            const [[], [idx]] = animations[i];// eslint-disable-line no-empty-pattern
+            const arrayBars = document.getElementsByClassName("array-bar");
+            if (idx === 1) {
+                const [[barOneIdx, barTwoIdx], []] = animations[i];// eslint-disable-line no-empty-pattern
+                const barOneStyle = arrayBars[barOneIdx].style;
+                const barTwoStyle = arrayBars[barTwoIdx].style;
+                setTimeout(() => {
+                    barOneStyle.backgroundColor = SECONDARY_COLOR;
+                    barTwoStyle.backgroundColor = SECONDARY_COLOR;
+                }, i * ANIMATION_SPEED_MS);
+                continue;
+            }
+            if (idx === 2) {
+                const [[barOneIdx, barTwoIdx], []] = animations[i];// eslint-disable-line no-empty-pattern
+                const barOneStyle = arrayBars[barOneIdx].style;
+                const barTwoStyle = arrayBars[barTwoIdx].style;
+                setTimeout(() => {
+                    barOneStyle.backgroundColor = PRIMARY_COLOR;
+                    barTwoStyle.backgroundColor = PRIMARY_COLOR;
+                }, i * ANIMATION_SPEED_MS);
+                continue;
+            }
+            if (idx === 3) {
+                const [[[barOneIdx, oneHeight], [barTwoIdx, twoHeight]], []] = animations[i];// eslint-disable-line no-empty-pattern
+                const barOneStyle = arrayBars[barOneIdx].style;
+                const barTwoStyle = arrayBars[barTwoIdx].style;
+                setTimeout(() => {
+                    barOneStyle.height = `${oneHeight}px`;
+                    barTwoStyle.height = `${twoHeight}px`;
+                }, i * (ANIMATION_SPEED_MS));
+                continue;
+            }
+            if (idx === 4) {
+                const [[barOneIdx], []] = animations[i];// eslint-disable-line no-empty-pattern
+                const barOneStyle = arrayBars[barOneIdx].style;
+                setTimeout(() => {
+                    barOneStyle.backgroundColor = PRIMARY_COLOR;
+                }, i * ANIMATION_SPEED_MS);
+            }
+        }
+
+        if (this.isSorted(this.state.array)) {
+            setTimeout(function () {
+                confirmAlert({
+                    title: 'Sorting Done',
+                    message: 'Want to reset array?',
+                    buttons: [
+                        {
+                            label: 'Yes',
+                            onClick: () => {
+                                window.location.reload();
+                            }
+                        },
+                        {
+                            label: 'No',
+                        }
+                    ]
+                });
+            }, anim);
+        }
+    }
+
+    insertionSort() {
+        if (this.isSorted(this.state.array)) {
+            confirmAlert({
+                title: "Already Sorted!",
+                message: "Want to reset?",
+                buttons: [
+                    {
+                        label: 'Yes',
+                        onClick: () => {
+                            window.location.reload();
+                        }
+                    },
+                    {
+                        label: 'No',
+                    }
+                ]
+            });
+            return;
+        }
+
+        const animations = getInsertionSortAnimations(this.state.array);
+        let anim = 0;
+        for (let i = 0; i < animations.length; i++) {
+            anim = i * ANIMATION_SPEED_MS;
+            const [[], [idx]] = animations[i];// eslint-disable-line no-empty-pattern
+            const arrayBars = document.getElementsByClassName("array-bar");
+            if (idx === 1) {
+                const [[barOneIdx, barTwoIdx], []] = animations[i];// eslint-disable-line no-empty-pattern
+                const barOneStyle = arrayBars[barOneIdx].style;
+                const barTwoStyle = arrayBars[barTwoIdx].style;
+                setTimeout(() => {
+                    barOneStyle.backgroundColor = SECONDARY_COLOR;
+                    barTwoStyle.backgroundColor = SECONDARY_COLOR;
+                }, i * ANIMATION_SPEED_MS);
+            }
+            if (idx === 2) {
+                const [[barOneIdx, barTwoIdx], []] = animations[i];// eslint-disable-line no-empty-pattern
+                const barOneStyle = arrayBars[barOneIdx].style;
+                const barTwoStyle = arrayBars[barTwoIdx].style;
+                setTimeout(() => {
+                    barOneStyle.backgroundColor = PRIMARY_COLOR;
+                    barTwoStyle.backgroundColor = PRIMARY_COLOR;
+                }, i * ANIMATION_SPEED_MS);
+            }
+            if (idx === 3) {
+                const [[barOneIdx, newHeight], []] = animations[i];// eslint-disable-line no-empty-pattern
+                const barOneStyle = arrayBars[barOneIdx].style;
+                setTimeout(() => {
+                    barOneStyle.height = `${newHeight}px`;
+                }, i * ANIMATION_SPEED_MS);
+            }
+        }
+
+        if (this.isSorted(this.state.array)) {
+            setTimeout(function () {
+                confirmAlert({
+                    title: 'Sorting Done',
+                    message: 'Want to reset array?',
+                    buttons: [
+                        {
+                            label: 'Yes',
+                            onClick: () => {
+                                window.location.reload();
+                            }
+                        },
+                        {
+                            label: 'No',
+                        }
+                    ]
+                });
+            }, anim);
+        }
+    }
+
 
     mergeSort() {
         if (this.isSorted(this.state.array)) {
@@ -74,7 +227,9 @@ class Sorting extends Component {
             return;
         }
         const animations = getMergeSortAnimations(this.state.array);
+        let anim = 0;
         for (let i = 0; i < animations.length; i++) {
+            anim = i * ANIMATION_SPEED_MS;
             const arrayBars = document.getElementsByClassName('array-bar');
             const isColorChange = i % 3 !== 2;
             if (isColorChange) {
@@ -94,8 +249,7 @@ class Sorting extends Component {
                 }, i * ANIMATION_SPEED_MS);
             }
         }
-        console.log(this.state.array);
-        console.log(this.isSorted(this.state.array));
+
         if (this.isSorted(this.state.array)) {
             setTimeout(function () {
                 confirmAlert({
@@ -113,10 +267,31 @@ class Sorting extends Component {
                         }
                     ]
                 });
-            }, ANIMATION_SPEED_MS*3030);
+            }, anim);
         }
     }
 
+    randMerge() {
+        let val = randomIntFromFunction(1, 3);
+        let mp = new Map();
+        mp[1] = "Merge Sort";
+        mp[2] = "Bubble Sort";
+        mp[3] = "Insertion Sort";
+        let name = mp[val];
+        if (mp[val] === "Merge Sort" || mp[val] === "Bubble Sort" || mp[val] === "Insertion Sort") {
+            if (mp[val] === "Merge Sort") {
+                document.getElementById("name").innerHTML = name;
+                return this.mergeSort();
+            } else if (mp[val] === "Bubble Sort") {
+                document.getElementById("name").innerHTML = name;
+                return this.bubbleSort();
+            } else if (mp[val] === "Insertion Sort") {
+                document.getElementById("name").innerHTML = name;
+                return this.insertionSort();
+            }
+        }
+
+    }
 
     isSorted(array) {
         if (JSON.stringify(array) === JSON.stringify(array.slice().sort((a, b) => a - b))) {
@@ -129,16 +304,12 @@ class Sorting extends Component {
         ANIMATION_SPEED_MS = document.getElementById("speed").value;
         let speed = "Speed:"+ANIMATION_SPEED_MS.toString() + "ms";
         document.getElementById("animSpeed").innerHTML = speed;
-        console.log(speed);
-        console.log("Speed:" + ANIMATION_SPEED_MS);
     }
 
     render() {
         const { array } = this.state;
         return (
             <React.Fragment>
-                {/*<button onClick={() => this.resetArray()}>Reset</button>*/}
-                
                 <div className="boxMain">
                     <div style={{
                         margin: `${1}%`,
@@ -154,8 +325,8 @@ class Sorting extends Component {
                             height:`${10}%`,
                         }} /><br />
                     </div>
-                    <Button className="d-inline-block array-container" onClick={() => this.mergeSort()} variant="secondary">
-                        <h1 style={{
+                    <Button className="d-inline-block array-container" onClick={() => this.randMerge()} variant="secondary">
+                        <h1 id="name" style={{
                             position: "relative",
                             fontSize: '3vw',
                             color: "gray",
@@ -184,10 +355,6 @@ class Sorting extends Component {
                                 disabled={false} /></div>
                     </div>
                 </div>
-                {/*<button onClick={() => this.resetArray()}>Reset</button>
-                <button onClick={() => this.mergeSort()}>MergeSort</button>
-                <button onClick={() => this.pause(1000)}>Pause</button>
-                <button onClick={() => this.testAlgos()}>test</button>*/}
             </React.Fragment>
         );
     }
@@ -196,5 +363,6 @@ class Sorting extends Component {
 function randomIntFromFunction(min, max) {
     return Math.floor(Math.random() * (max - min + 1) + min);
 }
+
 
 export default Sorting;
