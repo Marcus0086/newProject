@@ -1,8 +1,4 @@
-.mydiv {
-    top: 500px;
-    display: normal;
-    flex-direction: column;
-}
+
 .boxMain {
     display:inline-block;
     width:80%;

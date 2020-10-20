@@ -4,8 +4,8 @@
     "\\src",
     "\\src\\Algorithms",
     "\\src\\components",
+    "\\src\\components\\images",
     "\\src\\pages"
   ],
-  "SelectedNode": "\\src\\Algorithms\\insertionSort.jsx",
   "PreviewInSolutionExplorer": false
 }

@@ -27,6 +27,7 @@ class Sorting extends Component {
 
     componentDidMount() {
         this.resetArray();
+        window.onload = setTimeout(function () { this.randMerge() }.bind(this), 10000);
     }
 
     defaultArray() {
@@ -42,7 +43,9 @@ class Sorting extends Component {
     resetArray() {
         const array = [];
         for (let i = 0; i < 140; i++) {
-            array.push(randomIntFromFunction(50, 400));
+            let x = randomIntFromFunction(50, 400);
+            let y = x/20;
+            array.push(y);
         }
         this.setState({ array: array });
     }
@@ -98,8 +101,8 @@ class Sorting extends Component {
                 const barOneStyle = arrayBars[barOneIdx].style;
                 const barTwoStyle = arrayBars[barTwoIdx].style;
                 setTimeout(() => {
-                    barOneStyle.height = `${oneHeight}px`;
-                    barTwoStyle.height = `${twoHeight}px`;
+                    barOneStyle.height = `${oneHeight}vw`;
+                    barTwoStyle.height = `${twoHeight}vw`;
                 }, i * (ANIMATION_SPEED_MS));
                 continue;
             }
@@ -182,7 +185,7 @@ class Sorting extends Component {
                 const [[barOneIdx, newHeight], []] = animations[i];// eslint-disable-line no-empty-pattern
                 const barOneStyle = arrayBars[barOneIdx].style;
                 setTimeout(() => {
-                    barOneStyle.height = `${newHeight}px`;
+                    barOneStyle.height = `${newHeight}vw`;
                 }, i * ANIMATION_SPEED_MS);
             }
         }
@@ -248,7 +251,7 @@ class Sorting extends Component {
                 setTimeout(() => {
                     const [barOneIdx, newHeight] = animations[i];
                     const barOneStyle = arrayBars[barOneIdx].style;
-                    barOneStyle.height = `${newHeight}px`;
+                    barOneStyle.height = `${newHeight}vw`;
                 }, i * ANIMATION_SPEED_MS);
             }
         }
@@ -275,6 +278,24 @@ class Sorting extends Component {
     }
 
     randMerge() {
+        if (this.isSorted(this.state.array)) {
+            confirmAlert({
+                title: "Already Sorted!",
+                message: "Want to reset?",
+                buttons: [
+                    {
+                        label: 'Yes',
+                        onClick: () => {
+                            window.location.reload();
+                        }
+                    },
+                    {
+                        label: 'No',
+                    }
+                ]
+            });
+            return;
+        }
         let val = randomIntFromFunction(1, 3);
         let mp = new Map();
         mp[1] = "Merge Sort";
@@ -309,6 +330,8 @@ class Sorting extends Component {
         document.getElementById("animSpeed").innerHTML = speed;
     }
 
+    
+
     render() {
         const { array } = this.state;
         return (
@@ -328,18 +351,18 @@ class Sorting extends Component {
                             height:`${10}%`,
                         }} /><br />*/}
                     </div>
-                    <Button className="d-inline-block array-container" onClick={() => this.randMerge()} variant="">
+                    <Button className="d-inline-block array-container" variant="">
                         <h1 id="name" style={{
                             position: "relative",
                             fontSize: '3vw',
-                            color: "gray",
+                            color: "tomato",
                         }}>Visualizations</h1>
                         {array.map((value, idx) => (
                             <div
                                 className="array-bar"
                                 key={idx}
                                 style={{
-                                    height: `${value/20}vw`
+                                    height: `${value}vw`,
                                 }}
                             >{value}</div>
                             
@@ -348,15 +371,16 @@ class Sorting extends Component {
                     <div className="d-inline-block array-container2" variant="secondary">
                         <h1 style={{
                             fontSize: '3vw',
-                            color: "gray",
+                            color: "tomato",
                             marginLeft:'25%'
                         }}>Algorithms</h1>
                         <div style={{
-                            margin: '5%',
+                            margin: '4%',
                         }}>
                             <CKEditor
                                 editor={ClassicEditor}
-                                disabled={false} /></div>
+                                disabled={false}
+                            /></div>
                     </div>
                 </div>
             </React.Fragment>

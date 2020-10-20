@@ -1,15 +1,20 @@
 .array-container {
-    background-color:white;
+    background-color: white;
     position: relative;
-    margin:1%;
-    border:1px solid silver;
-    border-radius:4px;
-    width:50%;
+    margin: 1%;
+    border: 1px solid silver;
+    border-radius: 4px;
+    width: 50%;
+    
 }
 
 .array-container:hover {
     background-color: ghostwhite;
+    animation: colorchange 1s;
+    animation-iteration-count: infinite;
 }
+
+
 
 .array-container2 {
     background-color: white;
@@ -22,6 +27,8 @@
 
 .array-container2:hover {
     background-color: ghostwhite;
+    animation: colorchange 1s;
+    animation-iteration-count: infinite;
 }
 
 .array-bar {
@@ -32,4 +39,21 @@
     margin-top: 2%;
     margin-bottom: 2%;
     text-indent: -9999px;
+}
+
+@keyframes colorchange {
+    0% {
+        border: 1px solid;
+        border-color: orange blue green tomato;
+    }
+
+    50% {
+        border: 1px solid;
+        border-color: blue tomato orange green;
+    }
+
+    100% {
+        border: 1px solid;
+        border-color: tomato green blue orange;
+    }
 }
