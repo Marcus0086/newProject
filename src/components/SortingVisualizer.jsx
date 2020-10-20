@@ -10,7 +10,7 @@ import CKEditor from '@ckeditor/ckeditor5-react';
 import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 import '../Algorithmstxt/mergesort.txt';
 
-let ANIMATION_SPEED_MS = 10;
+let ANIMATION_SPEED_MS = 0;
 const PRIMARY_COLOR = '#14CADB';
 const SECONDARY_COLOR = '#FF2200';
 
@@ -48,6 +48,7 @@ class Sorting extends Component {
     }
 
     bubbleSort() {
+        ANIMATION_SPEED_MS = 5;
         if (this.isSorted(this.state.array)) {
             confirmAlert({
                 title: "Already Sorted!",
@@ -133,6 +134,7 @@ class Sorting extends Component {
     }
 
     insertionSort() {
+        ANIMATION_SPEED_MS = 5;
         if (this.isSorted(this.state.array)) {
             confirmAlert({
                 title: "Already Sorted!",
@@ -208,6 +210,7 @@ class Sorting extends Component {
 
 
     mergeSort() {
+        ANIMATION_SPEED_MS = 10;
         if (this.isSorted(this.state.array)) {
             confirmAlert({
                 title: "Already Sorted!",
@@ -314,7 +317,7 @@ class Sorting extends Component {
                     <div style={{
                         margin: `${1}%`,
                     }}>
-                        <label htmlFor="animationSpeed" style={{
+                        {/*<label htmlFor="animationSpeed" style={{
                             fontSize:'1vw',
                         }}>Animation Speed:</label><br />
                         <p style={{
@@ -323,9 +326,9 @@ class Sorting extends Component {
                         <input type="range" id="speed" name="animationSpeed" min="5" max="20" step="5" onInput={() => this.getRange()} style={{
                             width: `${10}%`,
                             height:`${10}%`,
-                        }} /><br />
+                        }} /><br />*/}
                     </div>
-                    <Button className="d-inline-block array-container" onClick={() => this.randMerge()} variant="secondary">
+                    <Button className="d-inline-block array-container" onClick={() => this.randMerge()} variant="">
                         <h1 id="name" style={{
                             position: "relative",
                             fontSize: '3vw',
@@ -336,9 +339,10 @@ class Sorting extends Component {
                                 className="array-bar"
                                 key={idx}
                                 style={{
-                                    height: `${value}px`
+                                    height: `${value/20}vw`
                                 }}
-                            />
+                            >{value}</div>
+                            
                         ))}
                     </Button>
                     <div className="d-inline-block array-container2" variant="secondary">

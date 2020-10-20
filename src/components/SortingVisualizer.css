@@ -1,5 +1,5 @@
 .array-container {
-    background-color:whitesmoke;
+    background-color:white;
     position: relative;
     margin:1%;
     border:1px solid silver;
@@ -8,16 +8,16 @@
 }
 
 .array-container:hover {
-    background-color: whitesmoke;
+    background-color: ghostwhite;
 }
 
 .array-container2 {
     background-color: white;
-    position: relative;
+    position: absolute;
     margin: 2%;
     border: 1px solid silver;
     border-radius: 4px;
-    width: 40%;
+    width: 30%;
 }
 
 .array-container2:hover {
@@ -30,6 +30,6 @@
     display: inline-block;
     margin: 0 0.2%;
     margin-top: 2%;
-    margin-bottom:2%;
-    
+    margin-bottom: 2%;
+    text-indent: -9999px;
 }
