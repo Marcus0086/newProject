@@ -41,7 +41,7 @@ class MainFile extends Component {
                         <Navbar className="border-bottom" bg="dark" variant="dark" expand="lg">
 
                             <Link className="nav-link" to="/about"><img alt={this.state.title} src={logo} style={{
-                                width: `${18}%`,
+                                width: `${15}%`,
                             }} /></Link>
                         <Navbar.Toggle className="border-0" aria-controls="navbar-toggle" />
                         <Navbar.Collapse id="navbar-toggle">

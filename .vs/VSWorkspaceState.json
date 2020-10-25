@@ -2,10 +2,8 @@
   "ExpandedNodes": [
     "",
     "\\src",
-    "\\src\\Algorithms",
-    "\\src\\components",
-    "\\src\\components\\images",
-    "\\src\\pages"
+    "\\src\\components"
   ],
+  "SelectedNode": "\\src\\components\\SortingVisualizer.jsx",
   "PreviewInSolutionExplorer": false
 }

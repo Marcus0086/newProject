@@ -1,15 +1,4 @@
 
-.boxMain {
-    display:inline-block;
-    width:80%;
-    border:2px solid silver;
-    padding:2%;
-    margin-top:20px;
-    margin-bottom:50px;
-    margin-left:10%;
-    border-radius:4px;
-    background-color:white;
-}
 
 .buttonNew {
     width: auto;

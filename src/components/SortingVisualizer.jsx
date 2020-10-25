@@ -3,6 +3,7 @@ import "./SortingVisualizer.css";
 import { getMergeSortAnimations } from '../Algorithms/newmergesort';
 import { getBubbleSortAnimations } from '../Algorithms/bubbleSort';
 import { getInsertionSortAnimations } from '../Algorithms/insertionSort';
+import { getSelectionSortAnimations } from '../Algorithms/selectionSort';
 import { Button } from "react-bootstrap";
 import { confirmAlert } from 'react-confirm-alert';
 import 'react-confirm-alert/src/react-confirm-alert.css'
@@ -10,10 +11,10 @@ import CKEditor from '@ckeditor/ckeditor5-react';
 import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 import '../Algorithmstxt/mergesort.txt';
 
-let ANIMATION_SPEED_MS = 0;
+let ANIMATION_SPEED_MS = 50;
 const PRIMARY_COLOR = '#14CADB';
 const SECONDARY_COLOR = '#FF2200';
-
+let anim = 0;
 class Sorting extends Component {
     constructor(props) {
         super(props);
@@ -21,16 +22,17 @@ class Sorting extends Component {
         this.state = {
             array: [],
             key: 0,
-            speed:0,
+            speed: 0,
+            disabled: false,
         };
     }
 
     componentDidMount() {
         this.resetArray();
-        window.onload = setTimeout(function () { this.randMerge() }.bind(this), 10000);
+        window.onload = setTimeout(function () { this.randSort() }.bind(this), 1000);
     }
 
-    defaultArray() {
+    /*defaultArray() {
         const array = [];
         const key = 0;
         for (let i = 0; i < 100; i++) {
@@ -38,11 +40,11 @@ class Sorting extends Component {
         }
         this.setState({ array: array });
         this.setState({ key: key });
-    }
+    }*/
 
     resetArray() {
         const array = [];
-        for (let i = 0; i < 140; i++) {
+        for (let i = 0; i < 70; i++) {
             let x = randomIntFromFunction(50, 400);
             let y = x/20;
             array.push(y);
@@ -51,7 +53,7 @@ class Sorting extends Component {
     }
 
     bubbleSort() {
-        ANIMATION_SPEED_MS = 5;
+        let disabled = false;
         if (this.isSorted(this.state.array)) {
             confirmAlert({
                 title: "Already Sorted!",
@@ -71,7 +73,6 @@ class Sorting extends Component {
             return;
         }
         const animations = getBubbleSortAnimations(this.state.array);
-        let anim = 0;
         for (let i = 0; i < animations.length; ++i) {
             anim = i * ANIMATION_SPEED_MS;
             const [[], [idx]] = animations[i];// eslint-disable-line no-empty-pattern
@@ -114,30 +115,13 @@ class Sorting extends Component {
                 }, i * ANIMATION_SPEED_MS);
             }
         }
-
-        if (this.isSorted(this.state.array)) {
-            setTimeout(function () {
-                confirmAlert({
-                    title: 'Sorting Done',
-                    message: 'Want to reset array?',
-                    buttons: [
-                        {
-                            label: 'Yes',
-                            onClick: () => {
-                                window.location.reload();
-                            }
-                        },
-                        {
-                            label: 'No',
-                        }
-                    ]
-                });
-            }, anim);
-        }
+        console.log(anim);
+        setTimeout(function () { this.setState({ disabled: disabled }) }.bind(this), anim);
+        //this.getAnimSpeed(anim);
     }
 
     insertionSort() {
-        ANIMATION_SPEED_MS = 5;
+        let disabled = false;
         if (this.isSorted(this.state.array)) {
             confirmAlert({
                 title: "Already Sorted!",
@@ -156,9 +140,7 @@ class Sorting extends Component {
             });
             return;
         }
-
         const animations = getInsertionSortAnimations(this.state.array);
-        let anim = 0;
         for (let i = 0; i < animations.length; i++) {
             anim = i * ANIMATION_SPEED_MS;
             const [[], [idx]] = animations[i];// eslint-disable-line no-empty-pattern
@@ -189,31 +171,79 @@ class Sorting extends Component {
                 }, i * ANIMATION_SPEED_MS);
             }
         }
-
-        if (this.isSorted(this.state.array)) {
-            setTimeout(function () {
-                confirmAlert({
-                    title: 'Sorting Done',
-                    message: 'Want to reset array?',
-                    buttons: [
-                        {
-                            label: 'Yes',
-                            onClick: () => {
-                                window.location.reload();
-                            }
-                        },
-                        {
-                            label: 'No',
-                        }
-                    ]
-                });
-            }, anim);
-        }
+        console.log(anim);
+        setTimeout(function () { this.setState({ disabled: disabled }) }.bind(this), anim);
+        //this.getAnimSpeed(anim);
     }
 
+    selectionSort() {
+        let disabled = false;
+        if (this.isSorted(this.state.array)) {
+            confirmAlert({
+                title: "Already Sorted!",
+                message: "Want to reset?",
+                buttons: [
+                    {
+                        label: 'Yes',
+                        onClick: () => {
+                            window.location.reload();
+                        }
+                    },
+                    {
+                        label: 'No',
+                    }
+                ]
+            });
+            return;
+        }
+        const animations = getSelectionSortAnimations(this.state.array);
+        for (let i = 0; i < animations.length; i++) {
+            anim = i * ANIMATION_SPEED_MS;
+            const [[], [idx]] = animations[i];// eslint-disable-line no-empty-pattern
+            const arrayBars = document.getElementsByClassName('array-bar');
+            if (idx === 1) {
+                const [[barOneIdx, barTwoIdx], []] = animations[i];// eslint-disable-line no-empty-pattern
+                const barOneStyle = arrayBars[barOneIdx].style;
+                const barTwoStyle = arrayBars[barTwoIdx].style;
+                setTimeout(() => {
+                    barOneStyle.backgroundColor = SECONDARY_COLOR;
+                    barTwoStyle.backgroundColor = SECONDARY_COLOR;
+                }, i * ANIMATION_SPEED_MS);
+                continue;
+            }
+            if (idx === 2) {
+                const [[barOneIdx, barTwoIdx], []] = animations[i];// eslint-disable-line no-empty-pattern
+                const barOneStyle = arrayBars[barOneIdx].style;
+                const barTwoStyle = arrayBars[barTwoIdx].style;
+                setTimeout(() => {
+                    barOneStyle.backgroundColor = PRIMARY_COLOR;
+                    barTwoStyle.backgroundColor = PRIMARY_COLOR;
+                }, i * ANIMATION_SPEED_MS);
+                continue;
+            }
+            if (idx === 3) {
+                const [[[barOneIdx, oneHeight], [barTwoIdx, twoHeight]], []] = animations[i];// eslint-disable-line no-empty-pattern
+                const barOneStyle = arrayBars[barOneIdx].style;
+                const barTwoStyle = arrayBars[barTwoIdx].style;
+                setTimeout(() => {
+                    barOneStyle.height = `${oneHeight}vw`;
+                    barTwoStyle.height = `${twoHeight}vw`;
+                }, i * (ANIMATION_SPEED_MS));
+                continue;
+            }
+            if (idx === 4) {
+                const [[barOneIdx], []] = animations[i];// eslint-disable-line no-empty-pattern
+                const barOneStyle = arrayBars[barOneIdx].style;
+                setTimeout(() => {
+                    barOneStyle.backgroundColor = PRIMARY_COLOR;
+                }, i * ANIMATION_SPEED_MS);
+            }
+        }
+        setTimeout(function () { this.setState({ disabled: disabled }) }.bind(this), anim);
+    }
 
     mergeSort() {
-        ANIMATION_SPEED_MS = 10;
+        let disabled = false;
         if (this.isSorted(this.state.array)) {
             confirmAlert({
                 title: "Already Sorted!",
@@ -233,7 +263,6 @@ class Sorting extends Component {
             return;
         }
         const animations = getMergeSortAnimations(this.state.array);
-        let anim = 0;
         for (let i = 0; i < animations.length; i++) {
             anim = i * ANIMATION_SPEED_MS;
             const arrayBars = document.getElementsByClassName('array-bar');
@@ -255,7 +284,11 @@ class Sorting extends Component {
                 }, i * ANIMATION_SPEED_MS);
             }
         }
+        setTimeout(function () { this.setState({ disabled: disabled }) }.bind(this), anim);
+        //this.getAnimSpeed(anim);
+    }
 
+    getAnimSpeed(anim) {
         if (this.isSorted(this.state.array)) {
             setTimeout(function () {
                 confirmAlert({
@@ -276,8 +309,7 @@ class Sorting extends Component {
             }, anim);
         }
     }
-
-    randMerge() {
+    randSort() {
         if (this.isSorted(this.state.array)) {
             confirmAlert({
                 title: "Already Sorted!",
@@ -296,22 +328,32 @@ class Sorting extends Component {
             });
             return;
         }
-        let val = randomIntFromFunction(1, 3);
-        let mp = new Map();
-        mp[1] = "Merge Sort";
-        mp[2] = "Bubble Sort";
-        mp[3] = "Insertion Sort";
+        let val = randomIntFromFunction(0, 3);
+        let mp = ["Merge Sort", "Bubble Sort", "Insertion Sort", "Selection Sort"];
+        mp = mp.sort(() => Math.random() - 0.5);
         let name = mp[val];
-        if (mp[val] === "Merge Sort" || mp[val] === "Bubble Sort" || mp[val] === "Insertion Sort") {
+        let disabled = false;
+        if (mp[val] === "Merge Sort" || mp[val] === "Bubble Sort" || mp[val] === "Insertion Sort" || mp[val]==="Selection Sort") {
             if (mp[val] === "Merge Sort") {
                 document.getElementById("name").innerHTML = name;
+                disabled = true;
+                this.setState({ disabled: disabled });
                 return this.mergeSort();
             } else if (mp[val] === "Bubble Sort") {
                 document.getElementById("name").innerHTML = name;
+                disabled = true;
+                this.setState({ disabled: disabled });
                 return this.bubbleSort();
             } else if (mp[val] === "Insertion Sort") {
                 document.getElementById("name").innerHTML = name;
+                disabled = true;
+                this.setState({ disabled: disabled });
                 return this.insertionSort();
+            } else if (mp[val] === "Selection Sort") {
+                document.getElementById("name").innerHTML = name;
+                disabled = true;
+                this.setState({ disabled: disabled });
+                return this.selectionSort();
             }
         }
 
@@ -338,7 +380,7 @@ class Sorting extends Component {
             <React.Fragment>
                 <div className="boxMain">
                     <div style={{
-                        margin: `${1}%`,
+                        margin: `${0}%`,
                     }}>
                         {/*<label htmlFor="animationSpeed" style={{
                             fontSize:'1vw',
@@ -351,7 +393,7 @@ class Sorting extends Component {
                             height:`${10}%`,
                         }} /><br />*/}
                     </div>
-                    <Button className="d-inline-block array-container" variant="">
+                    <Button className="d-inline-block array-container" variant="" disabled={this.state.disabled}>
                         <h1 id="name" style={{
                             position: "relative",
                             fontSize: '3vw',
@@ -368,11 +410,10 @@ class Sorting extends Component {
                             
                         ))}
                     </Button>
-                    <div className="d-inline-block array-container2" variant="secondary">
+                    <Button className="d-inline-block array-container2" variant="" disabled={this.state.disabled}>
                         <h1 style={{
                             fontSize: '3vw',
                             color: "tomato",
-                            marginLeft:'25%'
                         }}>Algorithms</h1>
                         <div style={{
                             margin: '4%',
@@ -381,7 +422,7 @@ class Sorting extends Component {
                                 editor={ClassicEditor}
                                 disabled={false}
                             /></div>
-                    </div>
+                    </Button>
                 </div>
             </React.Fragment>
         );
