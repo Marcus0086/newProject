@@ -4,12 +4,14 @@ import { getMergeSortAnimations } from '../Algorithms/newmergesort';
 import { getBubbleSortAnimations } from '../Algorithms/bubbleSort';
 import { getInsertionSortAnimations } from '../Algorithms/insertionSort';
 import { getSelectionSortAnimations } from '../Algorithms/selectionSort';
+import { getQuickSortAnimations } from '../Algorithms/quickSort';
 import { Button } from "react-bootstrap";
 import { confirmAlert } from 'react-confirm-alert';
 import 'react-confirm-alert/src/react-confirm-alert.css'
 import CKEditor from '@ckeditor/ckeditor5-react';
 import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 import '../Algorithmstxt/mergesort.txt';
+import { clearInterval } from "timers";
 
 let ANIMATION_SPEED_MS = 50;
 const PRIMARY_COLOR = '#14CADB';
@@ -29,18 +31,19 @@ class Sorting extends Component {
 
     componentDidMount() {
         this.resetArray();
-        window.onload = setTimeout(function () { this.randSort() }.bind(this), 1000);
+        window.onload = setTimeout(function () { this.counter() }.bind(this), 1000);
     }
 
-    /*defaultArray() {
-        const array = [];
-        const key = 0;
-        for (let i = 0; i < 100; i++) {
-            array.push(10);
-        }
-        this.setState({ array: array });
-        this.setState({ key: key });
-    }*/
+    counter() {
+        let c = 3;
+        setInterval(() => {
+            if (c > 0) {
+                document.getElementById("name").innerHTML = c--;
+            }
+            clearInterval();
+        }, 1000);
+        setTimeout(function () { this.randSort() }.bind(this), ((c * 1000) + 1000));
+    }
 
     resetArray() {
         const array = [];
@@ -71,7 +74,7 @@ class Sorting extends Component {
                 ]
             });
             return;
-        }
+        }   
         const animations = getBubbleSortAnimations(this.state.array);
         for (let i = 0; i < animations.length; ++i) {
             anim = i * ANIMATION_SPEED_MS;
@@ -153,6 +156,7 @@ class Sorting extends Component {
                     barOneStyle.backgroundColor = SECONDARY_COLOR;
                     barTwoStyle.backgroundColor = SECONDARY_COLOR;
                 }, i * ANIMATION_SPEED_MS);
+                continue;
             }
             if (idx === 2) {
                 const [[barOneIdx, barTwoIdx], []] = animations[i];// eslint-disable-line no-empty-pattern
@@ -162,6 +166,7 @@ class Sorting extends Component {
                     barOneStyle.backgroundColor = PRIMARY_COLOR;
                     barTwoStyle.backgroundColor = PRIMARY_COLOR;
                 }, i * ANIMATION_SPEED_MS);
+                continue;
             }
             if (idx === 3) {
                 const [[barOneIdx, newHeight], []] = animations[i];// eslint-disable-line no-empty-pattern
@@ -285,7 +290,73 @@ class Sorting extends Component {
             }
         }
         setTimeout(function () { this.setState({ disabled: disabled }) }.bind(this), anim);
-        //this.getAnimSpeed(anim);
+    }
+
+    quickSort() {
+        let disabled = false;
+        if (this.isSorted(this.state.array)) {
+            confirmAlert({
+                title: "Already Sorted!",
+                message: "Want to reset?",
+                buttons: [
+                    {
+                        label: 'Yes',
+                        onClick: () => {
+                            window.location.reload();
+                        }
+                    },
+                    {
+                        label: 'No',
+                    }
+                ]
+            });
+            return;
+        }
+        const animations = getQuickSortAnimations(this.state.array);
+        for (let i = 0; i < animations.length; ++i) {
+            anim = i * ANIMATION_SPEED_MS;
+            const [[], [idx]] = animations[i];// eslint-disable-line no-empty-pattern
+            const arrayBars = document.getElementsByClassName('array-bar');
+            if (idx === 1) {
+                const [[barOneIdx, barTwoIdx], []] = animations[i];// eslint-disable-line no-empty-pattern
+                const barOneStyle = arrayBars[barOneIdx].style;
+                const barTwoStyle = arrayBars[barTwoIdx].style;
+                setTimeout(() => {
+                    barOneStyle.backgroundColor = SECONDARY_COLOR;
+                    barTwoStyle.backgroundColor = SECONDARY_COLOR;
+                }, i * ANIMATION_SPEED_MS);
+                continue;
+            }
+            if (idx === 2) {
+                const [[barOneIdx, barTwoIdx], []] = animations[i];// eslint-disable-line no-empty-pattern
+                const barOneStyle = arrayBars[barOneIdx].style;
+                const barTwoStyle = arrayBars[barTwoIdx].style;
+                setTimeout(() => {
+                    barOneStyle.backgroundColor = PRIMARY_COLOR;
+                    barTwoStyle.backgroundColor = PRIMARY_COLOR;
+                }, i * ANIMATION_SPEED_MS);
+                continue;
+            }
+            if (idx === 3) {
+                const [[[barOneIdx, oneHeight], [barTwoIdx, twoHeight]], []] = animations[i];// eslint-disable-line no-empty-pattern
+                const barOneStyle = arrayBars[barOneIdx].style;
+                const barTwoStyle = arrayBars[barTwoIdx].style;
+                setTimeout(() => {
+                    barOneStyle.height = `${oneHeight}vw`;
+                    barTwoStyle.height = `${twoHeight}vw`;
+                }, i * (ANIMATION_SPEED_MS));
+                continue;
+            }
+            if (idx === 4) {
+                const [[barOneIdx], []] = animations[i];// eslint-disable-line no-empty-pattern
+                const barOneStyle = arrayBars[barOneIdx].style;
+                setTimeout(() => {
+                    barOneStyle.backgroundColor = PRIMARY_COLOR;
+                }, i * ANIMATION_SPEED_MS);
+            }
+        }
+        setTimeout(function () { this.setState({ disabled: disabled }) }.bind(this), anim);
+
     }
 
     getAnimSpeed(anim) {
@@ -328,8 +399,8 @@ class Sorting extends Component {
             });
             return;
         }
-        let val = randomIntFromFunction(0, 3);
-        let mp = ["Merge Sort", "Bubble Sort", "Insertion Sort", "Selection Sort"];
+        let val = randomIntFromFunction(0, 4);
+        let mp = ["Merge Sort", "Bubble Sort", "Insertion Sort", "Quick Sort", "Selection Sort"];
         mp = mp.sort(() => Math.random() - 0.5);
         let name = mp[val];
         let disabled = false;
@@ -349,7 +420,13 @@ class Sorting extends Component {
                 disabled = true;
                 this.setState({ disabled: disabled });
                 return this.insertionSort();
-            } else if (mp[val] === "Selection Sort") {
+            } else if (mp[val] === "Quick Sort") {
+                document.getElementById("name").innerHTML = name;
+                disabled = true;
+                this.setState({ disabled: disabled });
+                return this.quickSort();
+            }
+            else {
                 document.getElementById("name").innerHTML = name;
                 disabled = true;
                 this.setState({ disabled: disabled });

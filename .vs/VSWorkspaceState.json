@@ -2,8 +2,9 @@
   "ExpandedNodes": [
     "",
     "\\src",
+    "\\src\\Algorithms",
     "\\src\\components"
   ],
-  "SelectedNode": "\\src\\components\\SortingVisualizer.jsx",
+  "SelectedNode": "\\src\\Algorithms\\bubbleSort.jsx",
   "PreviewInSolutionExplorer": false
 }
