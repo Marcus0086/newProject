@@ -1,17 +1,18 @@
 import React, { Component } from "react";
 import "./SortingVisualizer.css";
-import { getMergeSortAnimations } from '../Algorithms/newmergesort';
-import { getBubbleSortAnimations } from '../Algorithms/bubbleSort';
-import { getInsertionSortAnimations } from '../Algorithms/insertionSort';
-import { getSelectionSortAnimations } from '../Algorithms/selectionSort';
-import { getQuickSortAnimations } from '../Algorithms/quickSort';
+import { getMergeSortAnimations } from '../Algorithms/sortingAlgos/newmergesort';
+import { getBubbleSortAnimations } from '../Algorithms/sortingAlgos/bubbleSort';
+import { getInsertionSortAnimations } from '../Algorithms/sortingAlgos/insertionSort';
+import { getSelectionSortAnimations } from '../Algorithms/sortingAlgos/selectionSort';
+import { getQuickSortAnimations } from '../Algorithms/sortingAlgos/quickSort';
+import { getBinarySearchAnimations } from '../Algorithms/searchingAlgos/binarysearch';
+import { getLinearSearchAnimations } from '../Algorithms/searchingAlgos/linearSearch';
 import { Button } from "react-bootstrap";
 import { confirmAlert } from 'react-confirm-alert';
 import 'react-confirm-alert/src/react-confirm-alert.css'
 import CKEditor from '@ckeditor/ckeditor5-react';
 import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 import '../Algorithmstxt/mergesort.txt';
-import { clearInterval } from "timers";
 
 let ANIMATION_SPEED_MS = 50;
 const PRIMARY_COLOR = '#14CADB';
@@ -31,25 +32,14 @@ class Sorting extends Component {
 
     componentDidMount() {
         this.resetArray();
-        window.onload = setTimeout(function () { this.counter() }.bind(this), 1000);
-    }
-
-    counter() {
-        let c = 3;
-        setInterval(() => {
-            if (c > 0) {
-                document.getElementById("name").innerHTML = c--;
-            }
-            clearInterval();
-        }, 1000);
-        setTimeout(function () { this.randSort() }.bind(this), ((c * 1000) + 1000));
+        window.onload = setTimeout(function () { this.randAlgo() }.bind(this), 10);
     }
 
     resetArray() {
         const array = [];
         for (let i = 0; i < 70; i++) {
             let x = randomIntFromFunction(50, 400);
-            let y = x/20;
+            let y = (x / 20);
             array.push(y);
         }
         this.setState({ array: array });
@@ -178,7 +168,6 @@ class Sorting extends Component {
         }
         console.log(anim);
         setTimeout(function () { this.setState({ disabled: disabled }) }.bind(this), anim);
-        //this.getAnimSpeed(anim);
     }
 
     selectionSort() {
@@ -359,6 +348,150 @@ class Sorting extends Component {
 
     }
 
+    binarySearch() {
+        let disabled = false;
+        ANIMATION_SPEED_MS = 500;
+        const HIGH_COLOR = "tomato";
+        const LOW_COLOR = "yellow";
+        const MID_COLOR = "purple";
+        const KEY_COLOR = "#DAAD86";
+        let keyFound = false;
+        document.getElementById("h3").innerHTML = "Low Color:" + LOW_COLOR + ", High Color:" + HIGH_COLOR + ", Mid Color:" + MID_COLOR + ", Key Color:" + KEY_COLOR;
+        document.getElementById("keyF").innerHTML = "Key found:" + keyFound;
+        const array = this.state.array.sort((a, b) => (a - b));
+        this.setState({ array: array });
+        const key = Math.floor(Math.random() * this.state.array.length);
+        const animations = getBinarySearchAnimations(this.state.array, this.state.array[key]);
+        for (let i = 0; i < animations.length; i++) {
+            anim = i * ANIMATION_SPEED_MS;
+            const [[], [idx]] = animations[i];// eslint-disable-line no-empty-pattern
+            const arraybars = document.getElementsByClassName('array-bar');
+            if (idx === 3) {
+                const [[barOneIdx, barTwoIdx], []] = animations[i];// eslint-disable-line no-empty-pattern
+                const barOneStyle = arraybars[barOneIdx].style;
+                const barTwoStyle = arraybars[barTwoIdx].style;
+                setTimeout(() => {
+                    barOneStyle.backgroundColor = LOW_COLOR;
+                    barTwoStyle.backgroundColor = HIGH_COLOR;
+                }, i * ANIMATION_SPEED_MS);
+            }
+
+            if (idx === 11) {
+                const [[barOneIdx, barTwoIdx], []] = animations[i];// eslint-disable-line no-empty-pattern
+                const barOneStyle = arraybars[barOneIdx].style;
+                const barTwoStyle = arraybars[barTwoIdx].style;
+                setTimeout(() => {
+                    barOneStyle.backgroundColor = PRIMARY_COLOR;
+                    barTwoStyle.backgroundColor = PRIMARY_COLOR;
+                }, i * ANIMATION_SPEED_MS);
+            }
+
+            if (idx === 4) {
+                const [[barOneIdx], []] = animations[i];// eslint-disable-line no-empty-pattern
+                const barOnseStyle = arraybars[barOneIdx].style;
+                setTimeout(() => {
+                    barOnseStyle.backgroundColor = MID_COLOR;
+                }, i * ANIMATION_SPEED_MS);
+            }
+
+            if (idx === 5) {
+                const [[barOneIdx], []] = animations[i];// eslint-disable-line no-empty-pattern
+                const barOnseStyle = arraybars[barOneIdx].style;
+                setTimeout(() => {
+                    barOnseStyle.backgroundColor = PRIMARY_COLOR;
+                }, i * ANIMATION_SPEED_MS);
+            }
+
+            if (idx === 6) {
+                const [[barOneIdx], []] = animations[i];// eslint-disable-line no-empty-pattern
+                const barOnseStyle = arraybars[barOneIdx].style;
+                setTimeout(() => {
+                    barOnseStyle.backgroundColor = HIGH_COLOR;
+                }, i * ANIMATION_SPEED_MS);
+            }
+
+            if (idx === 7) {
+                const [[barOneIdx], []] = animations[i];// eslint-disable-line no-empty-pattern
+                const barOnseStyle = arraybars[barOneIdx].style;
+                setTimeout(() => {
+                    barOnseStyle.backgroundColor = PRIMARY_COLOR;
+                }, i * ANIMATION_SPEED_MS);
+            }
+
+            if (idx === 8) {
+                const [[barOneIdx], []] = animations[i];// eslint-disable-line no-empty-pattern
+                const barOnseStyle = arraybars[barOneIdx].style;
+                setTimeout(() => {
+                    barOnseStyle.backgroundColor = LOW_COLOR;
+                }, i * ANIMATION_SPEED_MS);
+            }
+
+            if (idx === 9) {
+                const [[barOneIdx], []] = animations[i];// eslint-disable-line no-empty-pattern
+                const barOnseStyle = arraybars[barOneIdx].style;
+                setTimeout(() => {
+                    barOnseStyle.backgroundColor = PRIMARY_COLOR;
+                }, i * ANIMATION_SPEED_MS);
+            }
+
+            if (idx === 10) {
+                keyFound = true;
+                const keyF = keyFound;
+                const [[barOneIdx], []] = animations[i];// eslint-disable-line no-empty-pattern
+                const barOnseStyle = arraybars[barOneIdx].style;
+                setTimeout(() => {
+                    barOnseStyle.backgroundColor = KEY_COLOR;
+                    document.getElementById("keyF").innerHTML = "Key found:" + keyF;
+                }, i * ANIMATION_SPEED_MS);
+            }
+        }
+        setTimeout(function () { this.setState({ disabled: disabled }) }.bind(this), anim);
+    }
+
+    linearSearch() {
+        let keyFound = false;
+        let disabled = false;
+        ANIMATION_SPEED_MS = 200;
+        const KEY_COLOR = "#DAAD86";
+        const key = Math.floor(Math.random() * this.state.array.length);
+        document.getElementById("h3").innerHTML = "Key Color:" + KEY_COLOR;
+        const animations = getLinearSearchAnimations(this.state.array, this.state.array[key]);
+        document.getElementById("keyF").innerHTML = "Key found:" + keyFound;
+        for (let i = 0; i < animations.length; i++) {
+            anim = i * ANIMATION_SPEED_MS;
+            const [[], [idx]] = animations[i];// eslint-disable-line no-empty-pattern
+            const arrayBars = document.getElementsByClassName('array-bar');
+            if (idx === 1) {
+                const [[barOneIdx], []] = animations[i];// eslint-disable-line no-empty-pattern
+                const barOneStyle = arrayBars[barOneIdx].style;
+                setTimeout(() => {
+                    barOneStyle.backgroundColor = SECONDARY_COLOR;
+                }, i * ANIMATION_SPEED_MS);
+            }
+
+            if (idx === 2) {
+                const [[barOneIdx], []] = animations[i];// eslint-disable-line no-empty-pattern
+                const barOneStyle = arrayBars[barOneIdx].style;
+                setTimeout(() => {
+                    barOneStyle.backgroundColor = PRIMARY_COLOR;
+                }, i * ANIMATION_SPEED_MS);
+            }
+
+            if (idx === 3) {
+                keyFound = true;
+                let keyF = keyFound;
+                const [[barOneIdx], []] = animations[i];// eslint-disable-line no-empty-pattern
+                const barOneStyle = arrayBars[barOneIdx].style;
+                setTimeout(() => {
+                    barOneStyle.backgroundColor = KEY_COLOR;
+                    document.getElementById("keyF").innerHTML = "Key found:" + keyF;
+                }, i * ANIMATION_SPEED_MS);
+                break;
+            }
+        }
+        setTimeout(function () { this.setState({ disabled: disabled }) }.bind(this), anim);
+    }
+
     getAnimSpeed(anim) {
         if (this.isSorted(this.state.array)) {
             setTimeout(function () {
@@ -380,7 +513,7 @@ class Sorting extends Component {
             }, anim);
         }
     }
-    randSort() {
+    randAlgo() {
         if (this.isSorted(this.state.array)) {
             confirmAlert({
                 title: "Already Sorted!",
@@ -399,38 +532,54 @@ class Sorting extends Component {
             });
             return;
         }
-        let val = randomIntFromFunction(0, 4);
-        let mp = ["Merge Sort", "Bubble Sort", "Insertion Sort", "Quick Sort", "Selection Sort"];
+        let mp = ["Merge Sort", "Bubble Sort", "Insertion Sort", "Quick Sort", "Selection Sort", "Binary Search", "Linear Search"];
+        let val = randomIntFromFunction(0, 6);
         mp = mp.sort(() => Math.random() - 0.5);
         let name = mp[val];
         let disabled = false;
-        if (mp[val] === "Merge Sort" || mp[val] === "Bubble Sort" || mp[val] === "Insertion Sort" || mp[val]==="Selection Sort") {
+        if (mp[val] === "Merge Sort" || mp[val] === "Bubble Sort" || mp[val] === "Insertion Sort" || mp[val] === "Quick Sort" || mp[val] === "Selection Sort" || mp[val] === "Binary Search" || mp[val] === "Linear Search" ) {
             if (mp[val] === "Merge Sort") {
+                //console.log(name);
                 document.getElementById("name").innerHTML = name;
                 disabled = true;
                 this.setState({ disabled: disabled });
                 return this.mergeSort();
             } else if (mp[val] === "Bubble Sort") {
+                //console.log(name);
                 document.getElementById("name").innerHTML = name;
                 disabled = true;
                 this.setState({ disabled: disabled });
                 return this.bubbleSort();
             } else if (mp[val] === "Insertion Sort") {
+                //console.log(name);
                 document.getElementById("name").innerHTML = name;
                 disabled = true;
                 this.setState({ disabled: disabled });
                 return this.insertionSort();
             } else if (mp[val] === "Quick Sort") {
+                //console.log(name);
                 document.getElementById("name").innerHTML = name;
                 disabled = true;
                 this.setState({ disabled: disabled });
                 return this.quickSort();
-            }
-            else {
+            } else if (mp[val] === "Selection Sort") {
+                //console.log(name);
                 document.getElementById("name").innerHTML = name;
                 disabled = true;
                 this.setState({ disabled: disabled });
                 return this.selectionSort();
+            } else if (mp[val] === "Binary Search") {
+                //console.log(name);
+                document.getElementById("name").innerHTML = name;
+                disabled = true;
+                this.setState({ disabled: disabled });
+                return this.binarySearch();
+            } else if (mp[val] === "Linear Search") {
+                //console.log(name);
+                document.getElementById("name").innerHTML = name;
+                disabled = true;
+                this.setState({ disabled: disabled });
+                return this.linearSearch();
             }
         }
 
@@ -448,8 +597,6 @@ class Sorting extends Component {
         let speed = "Speed:"+ANIMATION_SPEED_MS.toString() + "ms";
         document.getElementById("animSpeed").innerHTML = speed;
     }
-
-    
 
     render() {
         const { array } = this.state;
@@ -476,6 +623,16 @@ class Sorting extends Component {
                             fontSize: '3vw',
                             color: "tomato",
                         }}>Visualizations</h1>
+                        <h3 id="h3" style={{
+                            position: "relative",
+                            fontSize: '0.9vw',
+                            color: "tomato",
+                        }} >{ }</h3>
+                        <h3 id="keyF" style={{
+                            position: "relative",
+                            fontSize: '0.9vw',
+                            color: "tomato",
+                        }} >{ }</h3>
                         {array.map((value, idx) => (
                             <div
                                 className="array-bar"
@@ -483,7 +640,7 @@ class Sorting extends Component {
                                 style={{
                                     height: `${value}vw`,
                                 }}
-                            >{value}</div>
+                            >{ value }</div>
                             
                         ))}
                     </Button>
@@ -509,6 +666,5 @@ class Sorting extends Component {
 function randomIntFromFunction(min, max) {
     return Math.floor(Math.random() * (max - min + 1) + min);
 }
-
 
 export default Sorting;

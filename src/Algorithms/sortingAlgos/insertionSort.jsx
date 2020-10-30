@@ -1,4 +1,4 @@
-export function getInsertionSortAnimations(array) {
+ export function getInsertionSortAnimations(array) {
     const animations = [];
     if (array.length < 1) {
         return array;
@@ -28,3 +28,5 @@ function insertionSort(
         animations.push([[j + 1, x], [3]]);
     }
 }
+
+//console.log(getInsertionSortAnimations([2, 1, 3, 4, 5]));

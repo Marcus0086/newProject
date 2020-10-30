@@ -1,7 +1,7 @@
 import React from 'react';
 import HeroPage from '../components/hero';
 import ContentPage from '../components/content.jsx';
-
+import '../components/hero.css';
 function AboutPage(props) {
     return (
         <div>
