@@ -1,5 +1,7 @@
+.boxColor {
+    background: linear-gradient(to bottom, #FFFFFF, #ECE9E6);
+}
 .boxMain {
-    display: inline-block;
     width: 80%;
     border: 2px solid silver;
     padding: 2%;
@@ -11,6 +13,7 @@
     animation-iteration-count: infinite;
 }
 .array-container {
+    display:inline-block;
     position: relative;
     margin: 1%;
     border-radius: 4px;
@@ -24,12 +27,13 @@
     animation-iteration-count: infinite;
 }
 .array-container2 {
-    position: absolute;
-    margin: 2%;
-    border: 1px solid;
-    border-color: tomato green blue orange;
+    display: inline-block;
+    position: relative;
+    margin: 1%;
     border-radius: 4px;
     width: 30%;
+    border: 1px solid;
+    border-color: tomato green blue orange;
 }
 
 .array-container2:hover {
@@ -46,7 +50,6 @@
     margin-top: 2%;
     margin-bottom: 2%;
     text-indent: -9999px;
-    border: none;
 }
 
 @keyframes colorchange {

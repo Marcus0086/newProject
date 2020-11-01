@@ -7,12 +7,12 @@ import { getSelectionSortAnimations } from '../Algorithms/sortingAlgos/selection
 import { getQuickSortAnimations } from '../Algorithms/sortingAlgos/quickSort';
 import { getBinarySearchAnimations } from '../Algorithms/searchingAlgos/binarysearch';
 import { getLinearSearchAnimations } from '../Algorithms/searchingAlgos/linearSearch';
+//import mergeSortFile from '../Algorithmstxt/mergesort.js';
 import { Button } from "react-bootstrap";
 import { confirmAlert } from 'react-confirm-alert';
 import 'react-confirm-alert/src/react-confirm-alert.css'
 import CKEditor from '@ckeditor/ckeditor5-react';
 import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
-import '../Algorithmstxt/mergesort.txt';
 
 let ANIMATION_SPEED_MS = 50;
 const PRIMARY_COLOR = '#14CADB';
@@ -32,7 +32,8 @@ class Sorting extends Component {
 
     componentDidMount() {
         this.resetArray();
-        window.onload = setTimeout(function () { this.randAlgo() }.bind(this), 10);
+        window.onload = setTimeout(function () { this.randAlgo() }.bind(this), 0);
+        //window.onload = this.randAlgo();
     }
 
     resetArray() {
@@ -42,6 +43,7 @@ class Sorting extends Component {
             let y = (x / 20);
             array.push(y);
         }
+
         this.setState({ array: array });
     }
 
@@ -350,7 +352,7 @@ class Sorting extends Component {
 
     binarySearch() {
         let disabled = false;
-        ANIMATION_SPEED_MS = 500;
+        let spd = 500;
         const HIGH_COLOR = "tomato";
         const LOW_COLOR = "yellow";
         const MID_COLOR = "purple";
@@ -363,7 +365,7 @@ class Sorting extends Component {
         const key = Math.floor(Math.random() * this.state.array.length);
         const animations = getBinarySearchAnimations(this.state.array, this.state.array[key]);
         for (let i = 0; i < animations.length; i++) {
-            anim = i * ANIMATION_SPEED_MS;
+            anim = i * spd;
             const [[], [idx]] = animations[i];// eslint-disable-line no-empty-pattern
             const arraybars = document.getElementsByClassName('array-bar');
             if (idx === 3) {
@@ -373,7 +375,7 @@ class Sorting extends Component {
                 setTimeout(() => {
                     barOneStyle.backgroundColor = LOW_COLOR;
                     barTwoStyle.backgroundColor = HIGH_COLOR;
-                }, i * ANIMATION_SPEED_MS);
+                }, i * spd);
             }
 
             if (idx === 11) {
@@ -383,7 +385,7 @@ class Sorting extends Component {
                 setTimeout(() => {
                     barOneStyle.backgroundColor = PRIMARY_COLOR;
                     barTwoStyle.backgroundColor = PRIMARY_COLOR;
-                }, i * ANIMATION_SPEED_MS);
+                }, i * spd);
             }
 
             if (idx === 4) {
@@ -391,7 +393,7 @@ class Sorting extends Component {
                 const barOnseStyle = arraybars[barOneIdx].style;
                 setTimeout(() => {
                     barOnseStyle.backgroundColor = MID_COLOR;
-                }, i * ANIMATION_SPEED_MS);
+                }, i * spd);
             }
 
             if (idx === 5) {
@@ -399,7 +401,7 @@ class Sorting extends Component {
                 const barOnseStyle = arraybars[barOneIdx].style;
                 setTimeout(() => {
                     barOnseStyle.backgroundColor = PRIMARY_COLOR;
-                }, i * ANIMATION_SPEED_MS);
+                }, i * spd);
             }
 
             if (idx === 6) {
@@ -407,7 +409,7 @@ class Sorting extends Component {
                 const barOnseStyle = arraybars[barOneIdx].style;
                 setTimeout(() => {
                     barOnseStyle.backgroundColor = HIGH_COLOR;
-                }, i * ANIMATION_SPEED_MS);
+                }, i * spd);
             }
 
             if (idx === 7) {
@@ -415,7 +417,7 @@ class Sorting extends Component {
                 const barOnseStyle = arraybars[barOneIdx].style;
                 setTimeout(() => {
                     barOnseStyle.backgroundColor = PRIMARY_COLOR;
-                }, i * ANIMATION_SPEED_MS);
+                }, i * spd);
             }
 
             if (idx === 8) {
@@ -423,7 +425,7 @@ class Sorting extends Component {
                 const barOnseStyle = arraybars[barOneIdx].style;
                 setTimeout(() => {
                     barOnseStyle.backgroundColor = LOW_COLOR;
-                }, i * ANIMATION_SPEED_MS);
+                }, i * spd);
             }
 
             if (idx === 9) {
@@ -431,7 +433,7 @@ class Sorting extends Component {
                 const barOnseStyle = arraybars[barOneIdx].style;
                 setTimeout(() => {
                     barOnseStyle.backgroundColor = PRIMARY_COLOR;
-                }, i * ANIMATION_SPEED_MS);
+                }, i * spd);
             }
 
             if (idx === 10) {
@@ -442,7 +444,7 @@ class Sorting extends Component {
                 setTimeout(() => {
                     barOnseStyle.backgroundColor = KEY_COLOR;
                     document.getElementById("keyF").innerHTML = "Key found:" + keyF;
-                }, i * ANIMATION_SPEED_MS);
+                }, i * spd);
             }
         }
         setTimeout(function () { this.setState({ disabled: disabled }) }.bind(this), anim);
@@ -451,14 +453,14 @@ class Sorting extends Component {
     linearSearch() {
         let keyFound = false;
         let disabled = false;
-        ANIMATION_SPEED_MS = 200;
+        let spd = 200;
         const KEY_COLOR = "#DAAD86";
         const key = Math.floor(Math.random() * this.state.array.length);
         document.getElementById("h3").innerHTML = "Key Color:" + KEY_COLOR;
         const animations = getLinearSearchAnimations(this.state.array, this.state.array[key]);
         document.getElementById("keyF").innerHTML = "Key found:" + keyFound;
         for (let i = 0; i < animations.length; i++) {
-            anim = i * ANIMATION_SPEED_MS;
+            anim = i * spd;
             const [[], [idx]] = animations[i];// eslint-disable-line no-empty-pattern
             const arrayBars = document.getElementsByClassName('array-bar');
             if (idx === 1) {
@@ -466,7 +468,7 @@ class Sorting extends Component {
                 const barOneStyle = arrayBars[barOneIdx].style;
                 setTimeout(() => {
                     barOneStyle.backgroundColor = SECONDARY_COLOR;
-                }, i * ANIMATION_SPEED_MS);
+                }, i * spd);
             }
 
             if (idx === 2) {
@@ -474,7 +476,7 @@ class Sorting extends Component {
                 const barOneStyle = arrayBars[barOneIdx].style;
                 setTimeout(() => {
                     barOneStyle.backgroundColor = PRIMARY_COLOR;
-                }, i * ANIMATION_SPEED_MS);
+                }, i * spd);
             }
 
             if (idx === 3) {
@@ -485,7 +487,7 @@ class Sorting extends Component {
                 setTimeout(() => {
                     barOneStyle.backgroundColor = KEY_COLOR;
                     document.getElementById("keyF").innerHTML = "Key found:" + keyF;
-                }, i * ANIMATION_SPEED_MS);
+                }, i * spd);
                 break;
             }
         }
@@ -598,66 +600,78 @@ class Sorting extends Component {
         document.getElementById("animSpeed").innerHTML = speed;
     }
 
+    fileStr() {
+        /*const dic = [
+            [mergeSortFile],
+        ];
+        const str = dic[0].toString();
+        return str;*/
+    }
+
     render() {
         const { array } = this.state;
         return (
             <React.Fragment>
-                <div className="boxMain">
-                    <div style={{
-                        margin: `${0}%`,
-                    }}>
-                        {/*<label htmlFor="animationSpeed" style={{
-                            fontSize:'1vw',
-                        }}>Animation Speed:</label><br />
-                        <p style={{
-                            fontSize:'0.8vw',
-                        }} id="animSpeed">Default: {ANIMATION_SPEED_MS}ms</p>
-                        <input type="range" id="speed" name="animationSpeed" min="5" max="20" step="5" onInput={() => this.getRange()} style={{
-                            width: `${10}%`,
-                            height:`${10}%`,
-                        }} /><br />*/}
-                    </div>
-                    <Button className="d-inline-block array-container" variant="" disabled={this.state.disabled}>
-                        <h1 id="name" style={{
-                            position: "relative",
-                            fontSize: '3vw',
-                            color: "tomato",
-                        }}>Visualizations</h1>
-                        <h3 id="h3" style={{
-                            position: "relative",
-                            fontSize: '0.9vw',
-                            color: "tomato",
-                        }} >{ }</h3>
-                        <h3 id="keyF" style={{
-                            position: "relative",
-                            fontSize: '0.9vw',
-                            color: "tomato",
-                        }} >{ }</h3>
-                        {array.map((value, idx) => (
-                            <div
-                                className="array-bar"
-                                key={idx}
-                                style={{
-                                    height: `${value}vw`,
-                                }}
-                            >{ value }</div>
-                            
-                        ))}
-                    </Button>
-                    <Button className="d-inline-block array-container2" variant="" disabled={this.state.disabled}>
-                        <h1 style={{
-                            fontSize: '3vw',
-                            color: "tomato",
-                        }}>Algorithms</h1>
-                        <div style={{
-                            margin: '4%',
+                <div className="boxColor" >
+                    <div className="boxMain">
+                            {/*<div style={{
+                            margin: `${0}%`,
                         }}>
-                            <CKEditor
-                                editor={ClassicEditor}
-                                disabled={false}
-                            /></div>
-                    </Button>
-                </div>
+                            <label htmlFor="animationSpeed" style={{
+                                fontSize:'1vw',
+                            }}>Animation Speed:</label><br />
+                            <p style={{
+                                fontSize:'0.8vw',
+                            }} id="animSpeed">Default: {ANIMATION_SPEED_MS}ms</p>
+                                <input type="range" id="speed" name="animationSpeed" min="5" max="20" step="5" onInput={() => this.getRange()} style={{
+                                    width: `${10}%`,
+                                    height: `${10}%`,
+                                }} disabled={this.state.disabled} /><br />
+                        </div>*/}
+                        <Button className="d-inline-block array-container" variant="" disabled={this.state.disabled}>
+                            <h1 id="name" style={{
+                                position: "relative",
+                                fontSize: '3vw',
+                                color: "tomato",
+                            }}>Visualizations</h1>
+                            <h3 id="h3" style={{
+                                position: "relative",
+                                fontSize: '0.9vw',
+                                color: "tomato",
+                            }} >{ }</h3>
+                            <h3 id="keyF" style={{
+                                position: "relative",
+                                fontSize: '0.9vw',
+                                color: "tomato",
+                            }} >{ }</h3>
+                            {array.map((value, idx) => (
+                                <div
+                                    className="array-bar"
+                                    key={idx}
+                                    style={{
+                                        height: `${value}vw`,
+                                    }}
+                                >{value}</div>
+                            
+                            ))}
+                        </Button>
+                        <Button className="d-inline-block array-container2" variant="" disabled={this.state.disabled}>
+                            <h1 style={{
+                                fontSize: '3vw',
+                                color: "tomato",
+                            }}>Algorithms</h1>
+                            <div style={{
+                                margin: '4%',
+                            }}>
+                                <CKEditor
+                                    editor={ClassicEditor}
+                                    disabled={true}
+                                    data={this.fileStr()}
+                                />
+                            </div>
+                        </Button>
+                        </div>
+                    </div>
             </React.Fragment>
         );
     }

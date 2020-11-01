@@ -3,8 +3,11 @@
     "",
     "\\src",
     "\\src\\Algorithms",
-    "\\src\\components"
+    "\\src\\Algorithmstxt",
+    "\\src\\Algorithms\\sortingAlgos",
+    "\\src\\components",
+    "\\src\\pages"
   ],
-  "SelectedNode": "\\src\\components\\SortingVisualizer.css",
+  "SelectedNode": "\\src\\components\\hero.css",
   "PreviewInSolutionExplorer": false
 }
