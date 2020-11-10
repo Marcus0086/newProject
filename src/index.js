@@ -6,7 +6,7 @@ import * as serviceWorker from './serviceWorker';
 
 ReactDOM.render(
     <React.StrictMode>
-        <MainFile/>
+        <MainFile />
     </React.StrictMode>,
     document.getElementById('root')
 );

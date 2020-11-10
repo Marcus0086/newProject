@@ -7,12 +7,17 @@ import { getSelectionSortAnimations } from '../Algorithms/sortingAlgos/selection
 import { getQuickSortAnimations } from '../Algorithms/sortingAlgos/quickSort';
 import { getBinarySearchAnimations } from '../Algorithms/searchingAlgos/binarysearch';
 import { getLinearSearchAnimations } from '../Algorithms/searchingAlgos/linearSearch';
-//import mergeSortFile from '../Algorithmstxt/mergesort.js';
+import mergeSortFile from '../Algorithmstxt/mergesort';
+import insertionSortFile from '../Algorithmstxt/insertionSort';
+import bubbleSortFile from '../Algorithmstxt/bubbleSort';
+import quickSortFile from '../Algorithmstxt/quickSort';
+import selectionSortFile from '../Algorithmstxt/selectionSort';
+import binarySearchFile from '../Algorithmstxt/binarySearch';
+import linearSearchFile from '../Algorithmstxt/linearSearch';
 import { Button } from "react-bootstrap";
 import { confirmAlert } from 'react-confirm-alert';
 import 'react-confirm-alert/src/react-confirm-alert.css'
-import CKEditor from '@ckeditor/ckeditor5-react';
-import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
+import Editor from '@monaco-editor/react';
 
 let ANIMATION_SPEED_MS = 50;
 const PRIMARY_COLOR = '#14CADB';
@@ -21,19 +26,18 @@ let anim = 0;
 class Sorting extends Component {
     constructor(props) {
         super(props);
-
         this.state = {
             array: [],
             key: 0,
             speed: 0,
             disabled: false,
+            sortAlgo:"",
         };
     }
 
     componentDidMount() {
         this.resetArray();
-        window.onload = setTimeout(function () { this.randAlgo() }.bind(this), 0);
-        //window.onload = this.randAlgo();
+        window.onload = setTimeout(function () { this.randAlgo() }.bind(this), 100);
     }
 
     resetArray() {
@@ -45,6 +49,13 @@ class Sorting extends Component {
         }
 
         this.setState({ array: array });
+        setTimeout(() => {
+            window.scrollTo({
+                top: 800,
+                left: 0,
+                behavior: 'smooth',
+            });
+        }, 2000);
     }
 
     bubbleSort() {
@@ -70,10 +81,10 @@ class Sorting extends Component {
         const animations = getBubbleSortAnimations(this.state.array);
         for (let i = 0; i < animations.length; ++i) {
             anim = i * ANIMATION_SPEED_MS;
-            const [[], [idx]] = animations[i];// eslint-disable-line no-empty-pattern
+            const [, [idx]] = animations[i];
             const arrayBars = document.getElementsByClassName("array-bar");
             if (idx === 1) {
-                const [[barOneIdx, barTwoIdx], []] = animations[i];// eslint-disable-line no-empty-pattern
+                const [[barOneIdx, barTwoIdx],] = animations[i];
                 const barOneStyle = arrayBars[barOneIdx].style;
                 const barTwoStyle = arrayBars[barTwoIdx].style;
                 setTimeout(() => {
@@ -83,7 +94,7 @@ class Sorting extends Component {
                 continue;
             }
             if (idx === 2) {
-                const [[barOneIdx, barTwoIdx], []] = animations[i];// eslint-disable-line no-empty-pattern
+                const [[barOneIdx, barTwoIdx],] = animations[i];
                 const barOneStyle = arrayBars[barOneIdx].style;
                 const barTwoStyle = arrayBars[barTwoIdx].style;
                 setTimeout(() => {
@@ -93,7 +104,7 @@ class Sorting extends Component {
                 continue;
             }
             if (idx === 3) {
-                const [[[barOneIdx, oneHeight], [barTwoIdx, twoHeight]], []] = animations[i];// eslint-disable-line no-empty-pattern
+                const [[[barOneIdx, oneHeight], [barTwoIdx, twoHeight]],] = animations[i];
                 const barOneStyle = arrayBars[barOneIdx].style;
                 const barTwoStyle = arrayBars[barTwoIdx].style;
                 setTimeout(() => {
@@ -103,16 +114,14 @@ class Sorting extends Component {
                 continue;
             }
             if (idx === 4) {
-                const [[barOneIdx], []] = animations[i];// eslint-disable-line no-empty-pattern
+                const [[barOneIdx],] = animations[i];
                 const barOneStyle = arrayBars[barOneIdx].style;
                 setTimeout(() => {
                     barOneStyle.backgroundColor = PRIMARY_COLOR;
                 }, i * ANIMATION_SPEED_MS);
             }
         }
-        console.log(anim);
         setTimeout(function () { this.setState({ disabled: disabled }) }.bind(this), anim);
-        //this.getAnimSpeed(anim);
     }
 
     insertionSort() {
@@ -138,10 +147,10 @@ class Sorting extends Component {
         const animations = getInsertionSortAnimations(this.state.array);
         for (let i = 0; i < animations.length; i++) {
             anim = i * ANIMATION_SPEED_MS;
-            const [[], [idx]] = animations[i];// eslint-disable-line no-empty-pattern
+            const [, [idx]] = animations[i];
             const arrayBars = document.getElementsByClassName("array-bar");
             if (idx === 1) {
-                const [[barOneIdx, barTwoIdx], []] = animations[i];// eslint-disable-line no-empty-pattern
+                const [[barOneIdx, barTwoIdx],] = animations[i];
                 const barOneStyle = arrayBars[barOneIdx].style;
                 const barTwoStyle = arrayBars[barTwoIdx].style;
                 setTimeout(() => {
@@ -151,7 +160,7 @@ class Sorting extends Component {
                 continue;
             }
             if (idx === 2) {
-                const [[barOneIdx, barTwoIdx], []] = animations[i];// eslint-disable-line no-empty-pattern
+                const [[barOneIdx, barTwoIdx],] = animations[i];
                 const barOneStyle = arrayBars[barOneIdx].style;
                 const barTwoStyle = arrayBars[barTwoIdx].style;
                 setTimeout(() => {
@@ -161,14 +170,13 @@ class Sorting extends Component {
                 continue;
             }
             if (idx === 3) {
-                const [[barOneIdx, newHeight], []] = animations[i];// eslint-disable-line no-empty-pattern
+                const [[barOneIdx, newHeight],] = animations[i];
                 const barOneStyle = arrayBars[barOneIdx].style;
                 setTimeout(() => {
                     barOneStyle.height = `${newHeight}vw`;
                 }, i * ANIMATION_SPEED_MS);
             }
         }
-        console.log(anim);
         setTimeout(function () { this.setState({ disabled: disabled }) }.bind(this), anim);
     }
 
@@ -195,10 +203,10 @@ class Sorting extends Component {
         const animations = getSelectionSortAnimations(this.state.array);
         for (let i = 0; i < animations.length; i++) {
             anim = i * ANIMATION_SPEED_MS;
-            const [[], [idx]] = animations[i];// eslint-disable-line no-empty-pattern
+            const [, [idx]] = animations[i];
             const arrayBars = document.getElementsByClassName('array-bar');
             if (idx === 1) {
-                const [[barOneIdx, barTwoIdx], []] = animations[i];// eslint-disable-line no-empty-pattern
+                const [[barOneIdx, barTwoIdx],] = animations[i];
                 const barOneStyle = arrayBars[barOneIdx].style;
                 const barTwoStyle = arrayBars[barTwoIdx].style;
                 setTimeout(() => {
@@ -208,7 +216,7 @@ class Sorting extends Component {
                 continue;
             }
             if (idx === 2) {
-                const [[barOneIdx, barTwoIdx], []] = animations[i];// eslint-disable-line no-empty-pattern
+                const [[barOneIdx, barTwoIdx],] = animations[i];
                 const barOneStyle = arrayBars[barOneIdx].style;
                 const barTwoStyle = arrayBars[barTwoIdx].style;
                 setTimeout(() => {
@@ -218,7 +226,7 @@ class Sorting extends Component {
                 continue;
             }
             if (idx === 3) {
-                const [[[barOneIdx, oneHeight], [barTwoIdx, twoHeight]], []] = animations[i];// eslint-disable-line no-empty-pattern
+                const [[[barOneIdx, oneHeight], [barTwoIdx, twoHeight]],] = animations[i];
                 const barOneStyle = arrayBars[barOneIdx].style;
                 const barTwoStyle = arrayBars[barTwoIdx].style;
                 setTimeout(() => {
@@ -228,7 +236,7 @@ class Sorting extends Component {
                 continue;
             }
             if (idx === 4) {
-                const [[barOneIdx], []] = animations[i];// eslint-disable-line no-empty-pattern
+                const [[barOneIdx],] = animations[i];
                 const barOneStyle = arrayBars[barOneIdx].style;
                 setTimeout(() => {
                     barOneStyle.backgroundColor = PRIMARY_COLOR;
@@ -306,10 +314,10 @@ class Sorting extends Component {
         const animations = getQuickSortAnimations(this.state.array);
         for (let i = 0; i < animations.length; ++i) {
             anim = i * ANIMATION_SPEED_MS;
-            const [[], [idx]] = animations[i];// eslint-disable-line no-empty-pattern
+            const [, [idx]] = animations[i];
             const arrayBars = document.getElementsByClassName('array-bar');
             if (idx === 1) {
-                const [[barOneIdx, barTwoIdx], []] = animations[i];// eslint-disable-line no-empty-pattern
+                const [[barOneIdx, barTwoIdx],] = animations[i];
                 const barOneStyle = arrayBars[barOneIdx].style;
                 const barTwoStyle = arrayBars[barTwoIdx].style;
                 setTimeout(() => {
@@ -319,7 +327,7 @@ class Sorting extends Component {
                 continue;
             }
             if (idx === 2) {
-                const [[barOneIdx, barTwoIdx], []] = animations[i];// eslint-disable-line no-empty-pattern
+                const [[barOneIdx, barTwoIdx],] = animations[i];
                 const barOneStyle = arrayBars[barOneIdx].style;
                 const barTwoStyle = arrayBars[barTwoIdx].style;
                 setTimeout(() => {
@@ -329,7 +337,7 @@ class Sorting extends Component {
                 continue;
             }
             if (idx === 3) {
-                const [[[barOneIdx, oneHeight], [barTwoIdx, twoHeight]], []] = animations[i];// eslint-disable-line no-empty-pattern
+                const [[[barOneIdx, oneHeight], [barTwoIdx, twoHeight]],] = animations[i];
                 const barOneStyle = arrayBars[barOneIdx].style;
                 const barTwoStyle = arrayBars[barTwoIdx].style;
                 setTimeout(() => {
@@ -339,7 +347,7 @@ class Sorting extends Component {
                 continue;
             }
             if (idx === 4) {
-                const [[barOneIdx], []] = animations[i];// eslint-disable-line no-empty-pattern
+                const [[barOneIdx],] = animations[i];
                 const barOneStyle = arrayBars[barOneIdx].style;
                 setTimeout(() => {
                     barOneStyle.backgroundColor = PRIMARY_COLOR;
@@ -366,10 +374,10 @@ class Sorting extends Component {
         const animations = getBinarySearchAnimations(this.state.array, this.state.array[key]);
         for (let i = 0; i < animations.length; i++) {
             anim = i * spd;
-            const [[], [idx]] = animations[i];// eslint-disable-line no-empty-pattern
+            const [, [idx]] = animations[i];
             const arraybars = document.getElementsByClassName('array-bar');
             if (idx === 3) {
-                const [[barOneIdx, barTwoIdx], []] = animations[i];// eslint-disable-line no-empty-pattern
+                const [[barOneIdx, barTwoIdx],] = animations[i];
                 const barOneStyle = arraybars[barOneIdx].style;
                 const barTwoStyle = arraybars[barTwoIdx].style;
                 setTimeout(() => {
@@ -379,7 +387,7 @@ class Sorting extends Component {
             }
 
             if (idx === 11) {
-                const [[barOneIdx, barTwoIdx], []] = animations[i];// eslint-disable-line no-empty-pattern
+                const [[barOneIdx, barTwoIdx],] = animations[i];
                 const barOneStyle = arraybars[barOneIdx].style;
                 const barTwoStyle = arraybars[barTwoIdx].style;
                 setTimeout(() => {
@@ -389,7 +397,7 @@ class Sorting extends Component {
             }
 
             if (idx === 4) {
-                const [[barOneIdx], []] = animations[i];// eslint-disable-line no-empty-pattern
+                const [[barOneIdx],] = animations[i];
                 const barOnseStyle = arraybars[barOneIdx].style;
                 setTimeout(() => {
                     barOnseStyle.backgroundColor = MID_COLOR;
@@ -397,7 +405,7 @@ class Sorting extends Component {
             }
 
             if (idx === 5) {
-                const [[barOneIdx], []] = animations[i];// eslint-disable-line no-empty-pattern
+                const [[barOneIdx],] = animations[i];
                 const barOnseStyle = arraybars[barOneIdx].style;
                 setTimeout(() => {
                     barOnseStyle.backgroundColor = PRIMARY_COLOR;
@@ -405,7 +413,7 @@ class Sorting extends Component {
             }
 
             if (idx === 6) {
-                const [[barOneIdx], []] = animations[i];// eslint-disable-line no-empty-pattern
+                const [[barOneIdx],] = animations[i];
                 const barOnseStyle = arraybars[barOneIdx].style;
                 setTimeout(() => {
                     barOnseStyle.backgroundColor = HIGH_COLOR;
@@ -413,7 +421,7 @@ class Sorting extends Component {
             }
 
             if (idx === 7) {
-                const [[barOneIdx], []] = animations[i];// eslint-disable-line no-empty-pattern
+                const [[barOneIdx],] = animations[i];
                 const barOnseStyle = arraybars[barOneIdx].style;
                 setTimeout(() => {
                     barOnseStyle.backgroundColor = PRIMARY_COLOR;
@@ -421,7 +429,7 @@ class Sorting extends Component {
             }
 
             if (idx === 8) {
-                const [[barOneIdx], []] = animations[i];// eslint-disable-line no-empty-pattern
+                const [[barOneIdx],] = animations[i];
                 const barOnseStyle = arraybars[barOneIdx].style;
                 setTimeout(() => {
                     barOnseStyle.backgroundColor = LOW_COLOR;
@@ -429,7 +437,7 @@ class Sorting extends Component {
             }
 
             if (idx === 9) {
-                const [[barOneIdx], []] = animations[i];// eslint-disable-line no-empty-pattern
+                const [[barOneIdx],] = animations[i];
                 const barOnseStyle = arraybars[barOneIdx].style;
                 setTimeout(() => {
                     barOnseStyle.backgroundColor = PRIMARY_COLOR;
@@ -439,7 +447,7 @@ class Sorting extends Component {
             if (idx === 10) {
                 keyFound = true;
                 const keyF = keyFound;
-                const [[barOneIdx], []] = animations[i];// eslint-disable-line no-empty-pattern
+                const [[barOneIdx],] = animations[i];
                 const barOnseStyle = arraybars[barOneIdx].style;
                 setTimeout(() => {
                     barOnseStyle.backgroundColor = KEY_COLOR;
@@ -461,10 +469,10 @@ class Sorting extends Component {
         document.getElementById("keyF").innerHTML = "Key found:" + keyFound;
         for (let i = 0; i < animations.length; i++) {
             anim = i * spd;
-            const [[], [idx]] = animations[i];// eslint-disable-line no-empty-pattern
+            const [, [idx]] = animations[i];
             const arrayBars = document.getElementsByClassName('array-bar');
             if (idx === 1) {
-                const [[barOneIdx], []] = animations[i];// eslint-disable-line no-empty-pattern
+                const [[barOneIdx],] = animations[i];
                 const barOneStyle = arrayBars[barOneIdx].style;
                 setTimeout(() => {
                     barOneStyle.backgroundColor = SECONDARY_COLOR;
@@ -472,7 +480,7 @@ class Sorting extends Component {
             }
 
             if (idx === 2) {
-                const [[barOneIdx], []] = animations[i];// eslint-disable-line no-empty-pattern
+                const [[barOneIdx],] = animations[i];
                 const barOneStyle = arrayBars[barOneIdx].style;
                 setTimeout(() => {
                     barOneStyle.backgroundColor = PRIMARY_COLOR;
@@ -482,7 +490,7 @@ class Sorting extends Component {
             if (idx === 3) {
                 keyFound = true;
                 let keyF = keyFound;
-                const [[barOneIdx], []] = animations[i];// eslint-disable-line no-empty-pattern
+                const [[barOneIdx],] = animations[i];
                 const barOneStyle = arrayBars[barOneIdx].style;
                 setTimeout(() => {
                     barOneStyle.backgroundColor = KEY_COLOR;
@@ -534,52 +542,61 @@ class Sorting extends Component {
             });
             return;
         }
+        
         let mp = ["Merge Sort", "Bubble Sort", "Insertion Sort", "Quick Sort", "Selection Sort", "Binary Search", "Linear Search"];
         let val = randomIntFromFunction(0, 6);
         mp = mp.sort(() => Math.random() - 0.5);
         let name = mp[val];
         let disabled = false;
+        let sortAlgo = "";
         if (mp[val] === "Merge Sort" || mp[val] === "Bubble Sort" || mp[val] === "Insertion Sort" || mp[val] === "Quick Sort" || mp[val] === "Selection Sort" || mp[val] === "Binary Search" || mp[val] === "Linear Search" ) {
             if (mp[val] === "Merge Sort") {
-                //console.log(name);
                 document.getElementById("name").innerHTML = name;
                 disabled = true;
+                sortAlgo = mergeSortFile;
                 this.setState({ disabled: disabled });
+                this.setState({ sortAlgo: sortAlgo });
                 return this.mergeSort();
             } else if (mp[val] === "Bubble Sort") {
-                //console.log(name);
                 document.getElementById("name").innerHTML = name;
                 disabled = true;
+                sortAlgo = bubbleSortFile;
+                this.setState({ sortAlgo: sortAlgo });
                 this.setState({ disabled: disabled });
                 return this.bubbleSort();
             } else if (mp[val] === "Insertion Sort") {
-                //console.log(name);
                 document.getElementById("name").innerHTML = name;
                 disabled = true;
+                sortAlgo = insertionSortFile;
+                this.setState({ sortAlgo: sortAlgo });
                 this.setState({ disabled: disabled });
                 return this.insertionSort();
             } else if (mp[val] === "Quick Sort") {
-                //console.log(name);
                 document.getElementById("name").innerHTML = name;
                 disabled = true;
+                sortAlgo = quickSortFile;
+                this.setState({ sortAlgo: sortAlgo });
                 this.setState({ disabled: disabled });
                 return this.quickSort();
             } else if (mp[val] === "Selection Sort") {
-                //console.log(name);
                 document.getElementById("name").innerHTML = name;
                 disabled = true;
+                sortAlgo = selectionSortFile;
+                this.setState({ sortAlgo: sortAlgo });
                 this.setState({ disabled: disabled });
                 return this.selectionSort();
             } else if (mp[val] === "Binary Search") {
-                //console.log(name);
                 document.getElementById("name").innerHTML = name;
                 disabled = true;
+                sortAlgo = binarySearchFile;
+                this.setState({ sortAlgo: sortAlgo });
                 this.setState({ disabled: disabled });
                 return this.binarySearch();
             } else if (mp[val] === "Linear Search") {
-                //console.log(name);
                 document.getElementById("name").innerHTML = name;
                 disabled = true;
+                sortAlgo = linearSearchFile;
+                this.setState({ sortAlgo: sortAlgo });
                 this.setState({ disabled: disabled });
                 return this.linearSearch();
             }
@@ -599,15 +616,6 @@ class Sorting extends Component {
         let speed = "Speed:"+ANIMATION_SPEED_MS.toString() + "ms";
         document.getElementById("animSpeed").innerHTML = speed;
     }
-
-    fileStr() {
-        /*const dic = [
-            [mergeSortFile],
-        ];
-        const str = dic[0].toString();
-        return str;*/
-    }
-
     render() {
         const { array } = this.state;
         return (
@@ -655,18 +663,27 @@ class Sorting extends Component {
                             
                             ))}
                         </Button>
-                        <Button className="d-inline-block array-container2" variant="" disabled={this.state.disabled}>
+                        <Button className="array-container2" variant="" disabled={false}>
                             <h1 style={{
                                 fontSize: '3vw',
                                 color: "tomato",
-                            }}>Algorithms</h1>
+                            }}>Programs</h1>
                             <div style={{
                                 margin: '4%',
                             }}>
-                                <CKEditor
-                                    editor={ClassicEditor}
-                                    disabled={true}
-                                    data={this.fileStr()}
+                                <Editor
+                                    height="20vw"
+                                    language="javascript"
+                                    theme="dark"
+                                    lineDecorationsWidth='10'
+                                    value={this.state.sortAlgo}
+                                    options={{
+                                        readOnly: true,
+                                        automaticLayout: true,
+                                        minimap: {
+                                            enabled: false,
+                                        },
+                                    }}
                                 />
                             </div>
                         </Button>

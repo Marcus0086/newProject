@@ -4,10 +4,8 @@
     "\\src",
     "\\src\\Algorithms",
     "\\src\\Algorithmstxt",
-    "\\src\\Algorithms\\sortingAlgos",
-    "\\src\\components",
-    "\\src\\pages"
+    "\\src\\Algorithms\\sortingAlgos"
   ],
-  "SelectedNode": "\\src\\components\\hero.css",
+  "SelectedNode": "\\src\\Algorithmstxt\\mergesort.js",
   "PreviewInSolutionExplorer": false
 }
