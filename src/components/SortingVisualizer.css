@@ -1,18 +1,18 @@
 ﻿@import url("https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css");
 
+/*boxes*/
+
 .boxColor {
     background: linear-gradient(to bottom, #FFFFFF, #ECE9E6);
 }
 .boxMain {
     width: 80%;
-    border: 2px solid silver;
+    /*border: 2px solid silver;*/
     padding: 2%;
     margin-top: 20px;
     margin-bottom: 50px;
     margin-left: 10%;
-    border-radius: 4px;
-    animation: colorchange 1s;
-    animation-iteration-count: infinite;
+    /*border-radius: 4px;*/
 }
 .array-container {
     display:inline-block;
@@ -32,7 +32,7 @@
     display:inline-block;
     position:relative;
     border-radius: 1%;
-    width:98%;
+    width:71.8vw;
     margin:1%;
     border: 1px solid;
     border-color: tomato green blue orange;
@@ -54,6 +54,19 @@
     text-indent: -9999px;
 }
 
+/*.array-block {
+    width:9%;
+    margin: 0 1%;
+    height: 3vh;
+    display:inline-flex;
+    margin-top:1%;
+    border:1px solid;
+    border-radius:10px;
+    align-items:center;
+    justify-content:center;
+}*/
+
+/*footer*/
 .footer {
     font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
     background: linear-gradient(to left, #434343, #000000);
@@ -108,8 +121,7 @@
     }
 
     .col2 p {
-        font-size: 130%;
-        min-width: auto;
+        font-size: 100%;
         margin-bottom: 0;
     }
 
@@ -166,6 +178,7 @@ span {
     color: white;
 }
 
+/*animations*/
 @keyframes colorchange {
     0% {
         border: 1px solid;

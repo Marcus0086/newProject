@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
+import { HashRouter } from 'react-router-dom';
+import { NavHashLink } from 'react-router-hash-link';
 import { Navbar, Nav, Container } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.css';
 import FooterPage from './components/footerPage';
@@ -12,6 +13,8 @@ class MainFile extends Component {
     constructor(props) {
         super(props);
         this.state = {
+            bg: "dark",
+            class:"",
             title: 'AdditcoX',
             headerlinks: [
                 { title: 'Home', path: '/' },
@@ -27,7 +30,7 @@ class MainFile extends Component {
                 title: 'About us'
             },
             contact: {
-                title: 'Let\'s Talk'
+                title: 'Let\'s Talk',
             }
         }
     }
@@ -35,7 +38,7 @@ class MainFile extends Component {
     render() {
         return (
             <React.Fragment>
-            <Router>
+                {/*<Router>
                     <Container className="p-0" fluid={true}>
                         
                         <Navbar className="border-bottom" bg="dark" variant="dark" expand="lg">
@@ -60,8 +63,46 @@ class MainFile extends Component {
                         backgroundColor: 'whitesmoke',
                     }} />
                     <FooterPage />
-            </Router>
+            </Router>*/}
+                <HashRouter>
+                    <Container className="p-0" fluid={true}>
 
+                        <Navbar className="border-bottom" bg={this.state.bg} variant="dark" expand="lg">
+
+                            <NavHashLink className="nav-link" to="/about"><img alt={this.state.title} src={logo} style={{
+                                width: `${15}%`,
+                            }} /></NavHashLink>
+                            <Navbar.Toggle className="border-0" aria-controls="navbar-toggle" />
+                            <Navbar.Collapse id="navbar-toggle">
+                                <Nav className="ml-auto">
+                                    <NavHashLink className="nav-link" to="/#" scroll={el => el.scrollIntoView({ behavior: 'smooth' })}>Home</NavHashLink>
+                                    <NavHashLink className="nav-link" to="/#about" scroll={el => el.scrollIntoView({ behavior: 'smooth' })} >About</NavHashLink>
+                                    <NavHashLink className="nav-link" to="/#contact" scroll={el => el.scrollIntoView({ behavior: 'smooth' })}>Contact</NavHashLink>
+                                </Nav>
+                            </Navbar.Collapse>
+                        </Navbar>
+                    </Container>
+                    <div id="">
+                        <HomePage title={this.state.home.title} subTitle={this.state.home.subTitle} text={this.state.home.text} />
+                        <hr style={{
+                            visibility: 'hidden',
+                        }} />
+                    </div>
+
+                    <div id="about">
+                        <AboutPage title={this.state.about.title} />
+                        <hr style={{
+                            visibility: 'hidden',
+                        }} />
+                    </div>
+
+                    <div id="contact">
+                        <ContactPage title={this.state.contact.title} />
+                        <hr />
+                    </div>
+                </HashRouter>
+
+                <FooterPage />
 			</React.Fragment>
         );
     }

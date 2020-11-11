@@ -37,7 +37,7 @@ class FooterPage extends Component {
 
                 <div className="footer">
                     <div className="innerfooter">
-                        <h2>A<span className="i">DD</span>ITO<span className="i">X.</span></h2>
+                        <h2>A<span className="i">DD</span>ICTO<span className="i">X.</span></h2>
                         <div className="infoot">
                             <div className="col1">
                                 <p style={{
@@ -59,15 +59,14 @@ class FooterPage extends Component {
                                 <div className="iconc1">
                                     <a href="https://www.facebook.com"><i className="fa fa-facebook"></i></a>
                                     <a href="https://www.instagram.com"><i className="fa fa-instagram"></i></a>
-                                    <a href="https://www.twitter.com"><i className="fa fa-twitter"></i></a>
-                                    <a href="https://www.youtube.com"><i className="fa fa-youtube"></i></a>
                                     <a href="https://www.whatsapp.com"><i className="fa fa-whatsapp"></i></a>
+                                    <a href="https://github.com/Marcus0086"><i className="fa fa-github"></i></a>
                                 </div>
                             </div>
                         </div>
                         <hr style={{ backgroundColor: 'white', }} />
                         <div className="iconc2">
-                            <a href="https://www.gmail.com" style={{ color: 'whitesmoke', }}>guptamarcus42@gmail.com</a>
+                            <a href="https://www.gmail.com" style={{ color: 'whitesmoke', }}>EMAIL: guptamarcus42@gmail.com</a>
                         </div>
                     </div>
                 </div>
@@ -75,7 +74,7 @@ class FooterPage extends Component {
                     color: 'white',
                     backgroundColor: '#000000',
                 }}>&copy;2020 Copyright:
-                            <a href="https://dsalgoapp.netlify.app/"> ADDITCOX</a>
+                    <a href="https://dsalgoapp.netlify.app/"> ADDITCOX</a>
                 </div>
 			</React.Fragment>
         );

@@ -49,13 +49,6 @@ class Sorting extends Component {
         }
 
         this.setState({ array: array });
-        setTimeout(() => {
-            window.scrollTo({
-                top: 800,
-                left: 0,
-                behavior: 'smooth',
-            });
-        }, 2000);
     }
 
     bubbleSort() {
@@ -663,7 +656,8 @@ class Sorting extends Component {
                             
                             ))}
                         </Button>
-                        <Button className="array-container2" variant="" disabled={false}>
+
+                        <Button className="array-container" variant="" disabled={false}>
                             <h1 style={{
                                 fontSize: '3vw',
                                 color: "tomato",
@@ -687,6 +681,16 @@ class Sorting extends Component {
                                 />
                             </div>
                         </Button>
+
+                        <Button className="d-inline-block array-container2" variant="" disabled={this.state.disabled}>
+                            <h1 style={{
+                                position: "relative",
+                                fontSize: '3vw',
+                                color: "tomato",
+                            }}>More Items</h1>
+                        </Button>
+
+                        
                         </div>
                     </div>
             </React.Fragment>

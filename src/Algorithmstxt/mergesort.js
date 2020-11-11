@@ -1,4 +1,5 @@
 const mergeSortAlgo = [
+    ["//Merge Sort\n"],
     ["function mergeSortHelper(\n"],
     ["    mainArray,\n     startIdx,\n     endIdx,\n     auxiliaryArray\n) {\n"],
     ["    if (startIdx === endIdx) return;\n"],

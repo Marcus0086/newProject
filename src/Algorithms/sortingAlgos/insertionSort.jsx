@@ -9,7 +9,7 @@
 
 function insertionSort(
     array,
-    animations
+    animations,
 ) {
     let i = 0,
         j = 0,
@@ -29,4 +29,3 @@ function insertionSort(
     }
 }
 
-//console.log(getInsertionSortAnimations([2, 1, 3, 4, 5]));

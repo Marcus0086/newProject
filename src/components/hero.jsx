@@ -12,13 +12,13 @@ function HeroPage(props) {
                 <Row className="justify-content-center py-5 backColor">
                     <Col md={8} sm={12}>
                         {props.title && <h1 className="display-1 font-weight-bolder" style={{
-                            fontSize:'8vw'
+                            fontSize:'6vw'
                         }}>{props.title}</h1>}
                         {props.subTitle && <h3 className="display-4 font-weight-light" style={{
-                            fontSize:'4vw'
+                            fontSize:'2vw'
                         }}>{props.subTitle}</h3>}
                         {props.text && <h3 className="lead font-weight-light" style={{
-                            fontSize:'2vw'
+                            fontSize:'1vw'
                         }}>{props.text}</h3>}
                     </Col>
                 </Row>
