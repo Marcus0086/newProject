@@ -652,7 +652,7 @@ class Sorting extends Component {
                                     style={{
                                         height: `${value}vw`,
                                     }}
-                                >{value}</div>
+                                / >
                             
                             ))}
                         </Button>

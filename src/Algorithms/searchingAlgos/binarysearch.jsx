@@ -10,7 +10,8 @@ export function getBinarySearchAnimations(array,key) {
 function binarySearch(
     arr,
     key,
-    animations) {
+    animations
+) {
     arr = arr.sort((a, b) => (a - b));
     let l = 0,
         h = arr.length,

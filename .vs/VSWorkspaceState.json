@@ -4,8 +4,9 @@
     "\\src",
     "\\src\\Algorithms",
     "\\src\\Algorithmstxt",
+    "\\src\\Algorithms\\searchingAlgos",
     "\\src\\Algorithms\\sortingAlgos"
   ],
-  "SelectedNode": "\\src\\Algorithmstxt\\linearSearch.js",
+  "SelectedNode": "\\src\\Algorithmstxt\\selectionSort.js",
   "PreviewInSolutionExplorer": false
 }
