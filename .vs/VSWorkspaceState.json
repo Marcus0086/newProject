@@ -2,11 +2,9 @@
   "ExpandedNodes": [
     "",
     "\\src",
-    "\\src\\Algorithms",
-    "\\src\\Algorithmstxt",
-    "\\src\\Algorithms\\searchingAlgos",
-    "\\src\\Algorithms\\sortingAlgos"
+    "\\src\\components",
+    "\\src\\pages"
   ],
-  "SelectedNode": "\\src\\Algorithmstxt\\selectionSort.js",
+  "SelectedNode": "\\src\\components\\hero.jsx",
   "PreviewInSolutionExplorer": false
 }

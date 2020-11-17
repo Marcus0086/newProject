@@ -31,13 +31,43 @@ class Sorting extends Component {
             key: 0,
             speed: 0,
             disabled: false,
-            sortAlgo:"",
+            sortAlgo: "",
+
+            listitems: [
+                {
+                    id: 0,
+                    context: "Linked-List",
+                    modifier: "list-group-item list-group-item-primary"
+                },
+                {
+                    id: 1,
+                    context: "Arrays",
+                    modifier: "list-group-item list-group-item-secondary"
+                },
+                {
+                    id: 2,
+                    context: "Stacks and Queues",
+                    modifier: "list-group-item list-group-item-success"
+                },
+                {
+                    id: 3,
+                    context: "Trees",
+                    modifier: "list-group-item list-group-item-danger"
+                },
+                {
+                    id: 4,
+                    context: "Graphs",
+                    modifier: "list-group-item list-group-item-warning"
+                }
+            ],
         };
     }
 
     componentDidMount() {
         this.resetArray();
-        window.onload = setTimeout(function () { this.randAlgo() }.bind(this), 100);
+        window.requestAnimationFrame(() => {
+            this.randAlgo()
+        })
     }
 
     resetArray() {
@@ -682,17 +712,30 @@ class Sorting extends Component {
                             </div>
                         </Button>
 
-                        <Button className="d-inline-block array-container2" variant="" disabled={this.state.disabled}>
+                        <div className="array-container2" variant="" disabled={this.state.disabled}>
                             <h1 style={{
                                 position: "relative",
                                 fontSize: '3vw',
                                 color: "tomato",
+                                textAlign: 'center',
                             }}>More Items</h1>
-                        </Button>
-
-                        
+                            <ol className="list-group" style={{
+                                margin: `${2}%`,
+                                fontSize: `${1}vw`,
+                                textAlign: 'center',
+                            }}>
+                                {this.state.listitems.map(listitem => (
+                                    <li key={listitem.id} className={listitem.modifier} style={{
+                                        height: `${3}vw`,
+                                        width:`${100}%`,
+                                    }}>
+                                        {listitem.context}
+                                    </li>
+                                    ))}
+                            </ol>
                         </div>
                     </div>
+                </div>
             </React.Fragment>
         );
     }

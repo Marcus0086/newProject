@@ -2,17 +2,23 @@
 @import url('https://use.fontawesome.com/releases/v5.7.2/css/all.css');
 
 .container {
-    width: 900px;
+    width: 80%;
+    padding: 2%;
+    margin-top: 20px;
+    margin-bottom: 50px;
+    margin-left: 10%;
     position: relative;
     display: grid;
     grid-template-columns: repeat(3, 300px);
     grid-template-rows: repeat(2,275px);
+    justify-content: center;
 }
 
 .box {
+    display: inline-block;
     position: relative;
     perspective: 1000px;
-    cursor: pointer
+    cursor: pointer;
 }
 
 .box:hover li {
@@ -20,6 +26,7 @@
 }
 
 #box_1 {
+
     grid-column: 1 / 2;
     grid-row: 1 / 2;
 }
@@ -59,7 +66,7 @@
 }
 
 .social {
-    width: 100px;
+    width: 50%;
     margin: 0 auto;
     position: relative;
     left: -2px;
@@ -101,46 +108,42 @@ ul li:nth-child(3) {
     font-size: 14px;
 }
 
-h2 {
+#h {
     text-align: center;
-    margin-bottom: 5px;
-    font-family: 'Encode Sans Condensed', sans-serif;
+    margin:5%;
     color: #2a2a2a;
     font-size: 20px;
 }
 
 .p1 {
-    background-image: url("https://s3.amazonaws.com/uifaces/faces/twitter/rem/128.jpg");
+    background-image: url("https://instagram.fixc1-3.fna.fbcdn.net/v/t51.2885-19/s150x150/118149552_310775930251415_4297440685926592327_n.jpg?_nc_ht=instagram.fixc1-3.fna.fbcdn.net&_nc_ohc=FzDGOu3GH90AX8BSzeR&_nc_tp=25&oh=5cd92eaaaf74f318b1c932cbbb4efe27&oe=5FD5656B");
     background-position: center;
     background-size: cover;
 }
 
 .p2 {
-    background-image: url("https://s3.amazonaws.com/uifaces/faces/twitter/boheme/128.jpg");
+    background-image: url("https://instagram.fixc1-3.fna.fbcdn.net/v/t51.2885-19/s320x320/94560564_845176212659474_2653817381180145664_n.jpg?_nc_ht=instagram.fixc1-3.fna.fbcdn.net&_nc_ohc=-7kVR0W0wacAX_Kx--F&_nc_tp=25&oh=d884fc7efadc73c8f2ebce5b6a5e4b52&oe=5FDC04E6");
     background-position: center;
     background-size: cover;
 }
 
 .p3 {
-    background-image: url("https://s3.amazonaws.com/uifaces/faces/twitter/ok/128.jpg");
+    background-image: url("https://instagram.fixc1-3.fna.fbcdn.net/v/t51.2885-19/s320x320/118079222_326288558637231_1907190007718661156_n.jpg?_nc_ht=instagram.fixc1-3.fna.fbcdn.net&_nc_ohc=mMfrgokpuQoAX8QC6AO&_nc_tp=25&oh=8e6345f73064a8d2c1be67677f7cbf7d&oe=5FDDEE84");
     background-position: center;
     background-size: cover;
 }
 
 .p4 {
-    background-image: url("https://s3.amazonaws.com/uifaces/faces/twitter/jsa/128.jpg");
     background-position: center;
     background-size: cover;
 }
 
 .p5 {
-    background-image: url("https://s3.amazonaws.com/uifaces/faces/twitter/kolage/128.jpg");
     background-position: center;
     background-size: cover;
 }
 
 .p6 {
-    background-image: url("https://s3.amazonaws.com/uifaces/faces/twitter/tonychester/128.jpg");
     background-position: center;
     background-size: cover;
 }
@@ -167,7 +170,7 @@ h2 {
     position: absolute;
     top: 0;
     left: 0;
-    padding-top: 35px;
+    padding-top: 12%;
     transform: rotate(0);
     transition: .5s;
     transform-style: preserve-3d;

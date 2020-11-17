@@ -1,6 +1,4 @@
-﻿@import url("https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css");
-
-/*boxes*/
+﻿/*boxes*/
 
 .boxColor {
     background: linear-gradient(to bottom, #FFFFFF, #ECE9E6);
@@ -20,8 +18,7 @@
     margin: 1%;
     border-radius: 5px;
     width: 35vw;
-    border: 1px solid;
-    border-color: orange blue green tomato;
+    border: 0.1px solid;
 }
 .array-container:hover {
     background-color:whitesmoke;
@@ -31,11 +28,10 @@
 .array-container2 {
     display:inline-block;
     position:relative;
-    border-radius: 1%;
+    border-radius: 5px;
     width:71.8vw;
     margin:1%;
-    border: 1px solid;
-    border-color: tomato green blue orange;
+    border: 0.1px solid;
 }
 
 .array-container2:hover {
@@ -54,17 +50,6 @@
     text-indent: -9999px;
 }
 
-/*.array-block {
-    width:9%;
-    margin: 0 1%;
-    height: 3vh;
-    display:inline-flex;
-    margin-top:1%;
-    border:1px solid;
-    border-radius:10px;
-    align-items:center;
-    justify-content:center;
-}*/
 
 /*footer*/
 .footer {

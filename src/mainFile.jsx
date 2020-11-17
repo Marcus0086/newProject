@@ -41,9 +41,11 @@ class MainFile extends Component {
 
                         <Navbar className="navClass border-bottom" bg="dark" variant="dark" expand="lg">
 
-                            <NavHashLink className="nav-link" to="/#about" scroll={el => el.scrollIntoView({ behavior: 'smooth' })} ><img alt={this.state.title} src={logo} style={{
-                                width: `${15}%`,
-                            }} /></NavHashLink>
+                            <NavHashLink className="nav-link" to="/#about" scroll={el => el.scrollIntoView({ behavior: 'smooth' })} >
+                                <img alt={this.state.title} src={logo} style={{
+                                    width:`${80}px`,
+                                }} />
+                            </NavHashLink>
                             <Navbar.Toggle className="border-0" aria-controls="navbar-toggle" />
                             <Navbar.Collapse id="navbar-toggle">
                                 <Nav className="ml-auto">

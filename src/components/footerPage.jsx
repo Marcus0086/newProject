@@ -57,10 +57,10 @@ class FooterPage extends Component {
 
                             <div className="iconc">
                                 <div className="iconc1">
-                                    <a href="https://www.facebook.com"><i className="fa fa-facebook"></i></a>
-                                    <a href="https://www.instagram.com"><i className="fa fa-instagram"></i></a>
-                                    <a href="https://www.whatsapp.com"><i className="fa fa-whatsapp"></i></a>
-                                    <a href="https://github.com/Marcus0086"><i className="fa fa-github"></i></a>
+                                    <a href="https://www.facebook.com"><i className="fab fa-facebook"></i></a>
+                                    <a href="https://www.instagram.com"><i className="fab fa-instagram"></i></a>
+                                    <a href="https://www.whatsapp.com"><i className="fab fa-whatsapp"></i></a>
+                                    <a href="https://github.com/Marcus0086"><i className="fab fa-github"></i></a>
                                 </div>
                             </div>
                         </div>
