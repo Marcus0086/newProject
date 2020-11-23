@@ -2,6 +2,8 @@
   "ExpandedNodes": [
     "",
     "\\src",
+    "\\src\\Algorithms",
+    "\\src\\Algorithms\\searchingAlgos",
     "\\src\\components",
     "\\src\\pages"
   ],

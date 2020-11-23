@@ -12,29 +12,6 @@ class FooterPage extends Component {
     render() {
         return (
             <React.Fragment>
-                {/*<footer className="page-footer footerColor">
-			        <Container fluid={true}>
-                        <Row className="border-top justify-content-between p-3">
-                                <Col className="p-0" md={3} sm={12} >
-                                    <dl style={{
-                                        color: 'whitesmoke',
-                                    }}>
-                                        <dt>Members</dt>
-                                        <dd><li>Raghav Gupta</li></dd>
-                                        <dd><li>Vikas Singh</li></dd>
-                                        <dd><li>Priyanshu Gupta</li></dd>
-                                    </dl>
-                                </Col>
-                        </Row>
-                    </Container>
-                    <div className="footer-copyright text-center py-3" style={{
-                        color: 'whitesmoke',
-                        backgroundColor:'#212121',
-                    }}>
-                        &#169;Copyright 2020
-                    </div>
-                </footer>*/}
-
                 <div className="footer">
                     <div className="innerfooter">
                         <h2>A<span className="i">DD</span>ICTO<span className="i">X.</span></h2>

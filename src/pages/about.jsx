@@ -14,13 +14,15 @@ const AboutPage = (props) => {
                         <div className="front">
                             <div className="profile_photo p1"></div>
                             <h2 id="h" className="full_name">Raghav Gupta</h2>
-                            <div className="jop">CEO & Co-Founder</div>
+                            <div className="jop">Software Developer</div>
                             <ul className="social">
                                 <li><a href="https://www.instagram.com/raghav0gupta/"><i className="fab fa-instagram"></i></a></li>
                                 <li><a href="https://www.linkedin.com/in/marcus-gupta-4a63341b5/"><i className="fab fa-linkedin"></i></a></li>
                                 <li><a href="https://github.com/Marcus0086"><i className="fab fa-github"></i></a></li>
                             </ul>
                         </div>
+                    </div>
+                    <div className="box active" id="box_4">
                         <div className="back">
                             <h2>Raghav Gupta</h2>
                             <p className="info">
@@ -36,15 +38,17 @@ const AboutPage = (props) => {
                         <div className="front">
                             <div className="profile_photo p2"></div>
                             <h2 id="h" className="full_name">Priyanshu Gupta</h2>
-                            <div className="jop">Co-Founder</div>
+                            <div className="jop">Software Developer</div>
                             <ul className="social">
                                 <li><a href="https://www.instagram.com"><i className="fab fa-instagram"></i></a></li>
                                 <li><a href="https://www.linkedin.com"><i className="fab fa-linkedin"></i></a></li>
                                 <li><a href="https://github.com/Marcus0086"><i className="fab fa-github"></i></a></li>
                             </ul>
                         </div>
+                    </div>
+                    <div className="box active" id="box_2">
                         <div className="back">
-                            <h2>Raghav Gupta</h2>
+                            <h2>Priyanshu Gupta</h2>
                             <p className="info">
                                 Lorem ipsum dolor sit amet, consectetur adipiscing elit.
                                 Cras rhoncus eget tellus fringilla egestas. Morbi ornare
@@ -54,20 +58,21 @@ const AboutPage = (props) => {
                             </p>
                         </div>
                     </div>
-
                     <div className="box" id="box_3">
                         <div className="front">
                             <div className="profile_photo p3"></div>
                             <h2 id="h" className="full_name">Vikas Singh</h2>
-                            <div className="jop">Co-Founder</div>
+                            <div className="jop">Software Developer</div>
                             <ul className="social">
                                 <li><a href="https://www.instagram.com"><i className="fab fa-instagram"></i></a></li>
                                 <li><a href="https://www.linkedin.com"><i className="fab fa-linkedin"></i></a></li>
                                 <li><a href="https://github.com/Marcus0086"><i className="fab fa-github"></i></a></li>
                             </ul>
                         </div>
+                    </div>
+                    <div className="box active" id="box_6">
                         <div className="back">
-                            <h2>Raghav Gupta</h2>
+                            <h2>Vikas Singh</h2>
                             <p className="info">
                                 Lorem ipsum dolor sit amet, consectetur adipiscing elit.
                                 Cras rhoncus eget tellus fringilla egestas. Morbi ornare

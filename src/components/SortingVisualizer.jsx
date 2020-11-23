@@ -1,4 +1,9 @@
 import React, { Component } from "react";
+import {
+    BrowserRouter as Router,
+    Route,
+    Link
+} from "react-router-dom";
 import "./SortingVisualizer.css";
 import { getMergeSortAnimations } from '../Algorithms/sortingAlgos/newmergesort';
 import { getBubbleSortAnimations } from '../Algorithms/sortingAlgos/bubbleSort';
@@ -14,11 +19,15 @@ import quickSortFile from '../Algorithmstxt/quickSort';
 import selectionSortFile from '../Algorithmstxt/selectionSort';
 import binarySearchFile from '../Algorithmstxt/binarySearch';
 import linearSearchFile from '../Algorithmstxt/linearSearch';
+import LinkedList from './linkedList';
+import Arrays from './arrays';
+import Trees from './Trees';
+import StacksQueues from './StacksQueues';
+import Graphs from './Graphs';
 import { Button } from "react-bootstrap";
 import { confirmAlert } from 'react-confirm-alert';
 import 'react-confirm-alert/src/react-confirm-alert.css'
 import Editor from '@monaco-editor/react';
-
 let ANIMATION_SPEED_MS = 50;
 const PRIMARY_COLOR = '#14CADB';
 const SECONDARY_COLOR = '#FF2200';
@@ -32,42 +41,57 @@ class Sorting extends Component {
             speed: 0,
             disabled: false,
             sortAlgo: "",
-
             listitems: [
                 {
                     id: 0,
                     context: "Linked-List",
-                    modifier: "list-group-item list-group-item-primary"
+                    modifier: "list-group-item list-group-item-primary",
+                    path: "/linkedList",
+                    component: LinkedList,
                 },
                 {
                     id: 1,
                     context: "Arrays",
-                    modifier: "list-group-item list-group-item-secondary"
+                    modifier: "list-group-item list-group-item-secondary",
+                    path: "/arrays",
+                    component: Arrays,
                 },
                 {
                     id: 2,
                     context: "Stacks and Queues",
-                    modifier: "list-group-item list-group-item-success"
+                    modifier: "list-group-item list-group-item-success",
+                    path: "/stacks",
+                    component: StacksQueues,
                 },
                 {
                     id: 3,
                     context: "Trees",
-                    modifier: "list-group-item list-group-item-danger"
+                    modifier: "list-group-item list-group-item-danger",
+                    path: "/trees",
+                    component: Trees,
                 },
                 {
                     id: 4,
                     context: "Graphs",
-                    modifier: "list-group-item list-group-item-warning"
+                    modifier: "list-group-item list-group-item-warning",
+                    path: "/graphs",
+                    component: Graphs,
                 }
             ],
         };
     }
 
     componentDidMount() {
+        const mybtn = document.getElementById("myBtn");
         this.resetArray();
-        window.requestAnimationFrame(() => {
-            this.randAlgo()
-        })
+        window.requestAnimationFrame(() => { this.randAlgo() });
+        window.onscroll = () => {
+            if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+                mybtn.style.display = "block";
+            } else {
+                mybtn.style.display = "none";
+            }
+        }
     }
 
     resetArray() {
@@ -659,7 +683,8 @@ class Sorting extends Component {
                                     height: `${10}%`,
                                 }} disabled={this.state.disabled} /><br />
                         </div>*/}
-                        <Button className="d-inline-block array-container" variant="" disabled={this.state.disabled}>
+                        {/*Sorting algos*/}
+                        <Button className="d-inline-block array-container" variant="" disabled={this.state.disabled} >
                             <h1 id="name" style={{
                                 position: "relative",
                                 fontSize: '3vw',
@@ -686,7 +711,7 @@ class Sorting extends Component {
                             
                             ))}
                         </Button>
-
+                        {/*Editor*/}
                         <Button className="array-container" variant="" disabled={false}>
                             <h1 style={{
                                 fontSize: '3vw',
@@ -711,7 +736,7 @@ class Sorting extends Component {
                                 />
                             </div>
                         </Button>
-
+                        {/*More items*/}
                         <div className="array-container2" variant="" disabled={this.state.disabled}>
                             <h1 style={{
                                 position: "relative",
@@ -719,20 +744,25 @@ class Sorting extends Component {
                                 color: "tomato",
                                 textAlign: 'center',
                             }}>More Items</h1>
-                            <ol className="list-group" style={{
-                                margin: `${2}%`,
-                                fontSize: `${1}vw`,
-                                textAlign: 'center',
-                            }}>
+                            <Router>
+                                <ol className="list-group" id="list" style={{
+                                    margin: `${2}%`,
+                                    fontSize: `${1}vw`,
+                                    textAlign: 'center',
+                                }}>
+                                    {this.state.listitems.map(listitem => (
+                                        <Link to={listitem.path} key={listitem.id}><li key={listitem.id} className={listitem.modifier + " listHover"} >
+                                            {listitem.context}
+                                        </li></Link>
+                                        ))}
+                                </ol>
                                 {this.state.listitems.map(listitem => (
-                                    <li key={listitem.id} className={listitem.modifier} style={{
-                                        height: `${3}vw`,
-                                        width:`${100}%`,
-                                    }}>
-                                        {listitem.context}
-                                    </li>
+                                    <Route path={listitem.path} key={listitem.id} exact render={() => <div>
+                                        <listitem.component />
+                                    </div>
+                                    } />
                                     ))}
-                            </ol>
+                            </Router>
                         </div>
                     </div>
                 </div>

@@ -14,11 +14,6 @@ class MainFile extends Component {
         super(props);
         this.state = {
             title: 'AdditcoX',
-            headerlinks: [
-                { title: 'Home', path: '/' },
-                { title: 'About', path: '/about' },
-                { title: 'Contact', path: '/contact' },
-            ],
             home: {
                 title: 'DataStructures and algorithms',
                 subTitle: 'Visualizers and Animations',
@@ -39,7 +34,7 @@ class MainFile extends Component {
                 <HashRouter>
                     <Container className="p-0" fluid={true}>
 
-                        <Navbar className="navClass border-bottom" bg="dark" variant="dark" expand="lg">
+                        <Navbar className="navClass border-bottom" bg="dark" variant="dark" id="navId" expand="lg">
 
                             <NavHashLink className="nav-link" to="/#about" scroll={el => el.scrollIntoView({ behavior: 'smooth' })} >
                                 <img alt={this.state.title} src={logo} style={{
@@ -74,9 +69,17 @@ class MainFile extends Component {
                         <ContactPage title={this.state.contact.title} />
                         <hr />
                     </div>
-                </HashRouter>
 
                 <FooterPage />
+                    <div>
+                        <i className="fa fa-chevron-up" id="myBtn" onClick={() => {
+                            window.scrollTo({
+                                top: 0,
+                                behavior: 'smooth',
+                            })
+                        }} />
+                    </div>
+                </HashRouter>
 			</React.Fragment>
         );
     }
