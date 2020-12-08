@@ -1,9 +1,9 @@
 import React, { Component } from "react";
-import {
-    BrowserRouter as Router,
-    Route,
-    Link
-} from "react-router-dom";
+//import {
+//    BrowserRouter as Router,
+//    Route,
+//    Link
+//} from "react-router-dom";
 import "./SortingVisualizer.css";
 import { getMergeSortAnimations } from '../Algorithms/sortingAlgos/newmergesort';
 import { getBubbleSortAnimations } from '../Algorithms/sortingAlgos/bubbleSort';
@@ -737,7 +737,7 @@ class Sorting extends Component {
                             </div>
                         </Button>
                         {/*More items*/}
-                        <div className="array-container2" variant="" disabled={this.state.disabled}>
+                        {/*<div className="array-container2" variant="" disabled={this.state.disabled}>
                             <h1 style={{
                                 position: "relative",
                                 fontSize: '3vw',
@@ -763,7 +763,7 @@ class Sorting extends Component {
                                     } />
                                     ))}
                             </Router>
-                        </div>
+                        </div>*/}
                     </div>
                 </div>
             </React.Fragment>

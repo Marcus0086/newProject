@@ -38,7 +38,7 @@ const AboutPage = (props) => {
                         <div className="front">
                             <div className="profile_photo p2"></div>
                             <h2 id="h" className="full_name">Priyanshu Gupta</h2>
-                            <div className="jop">Software Developer</div>
+                            <div className="jop">Conetnt writer</div>
                             <ul className="social">
                                 <li><a href="https://www.instagram.com"><i className="fab fa-instagram"></i></a></li>
                                 <li><a href="https://www.linkedin.com"><i className="fab fa-linkedin"></i></a></li>
@@ -62,7 +62,7 @@ const AboutPage = (props) => {
                         <div className="front">
                             <div className="profile_photo p3"></div>
                             <h2 id="h" className="full_name">Vikas Singh</h2>
-                            <div className="jop">Software Developer</div>
+                            <div className="jop">Product Manager</div>
                             <ul className="social">
                                 <li><a href="https://www.instagram.com"><i className="fab fa-instagram"></i></a></li>
                                 <li><a href="https://www.linkedin.com"><i className="fab fa-linkedin"></i></a></li>

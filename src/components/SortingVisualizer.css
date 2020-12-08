@@ -19,7 +19,7 @@
     margin: 1%;
     border-radius: 5px;
     width: 35vw;
-    border: 0.1px solid;
+    /*border: 0.1px solid;*/
 }
 .array-container:hover {
     background-color:whitesmoke;

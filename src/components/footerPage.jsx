@@ -50,7 +50,8 @@ class FooterPage extends Component {
                 <div className="footer-copyright text-center py-3" style={{
                     color: 'white',
                     backgroundColor: '#000000',
-                }}>&copy;2020 Copyright:
+                }}>
+                    &copy;2020 For community By:
                     <a href="https://dsalgoapp.netlify.app/"> ADDITCOX</a>
                 </div>
 			</React.Fragment>

@@ -3,10 +3,12 @@
     "",
     "\\src",
     "\\src\\Algorithms",
+    "\\src\\Algorithmstxt",
     "\\src\\Algorithms\\searchingAlgos",
+    "\\src\\Algorithms\\sortingAlgos",
     "\\src\\components",
     "\\src\\pages"
   ],
-  "SelectedNode": "\\src\\components\\hero.jsx",
+  "SelectedNode": "\\src\\mainFile.jsx",
   "PreviewInSolutionExplorer": false
 }
